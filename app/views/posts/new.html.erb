@@ -1,0 +1,12 @@
+<%= form_with model: @post, local: true do |f| %>
+  <%= f.label :description, "メモ" %>
+  <%= f.text_field :description %>
+  <%= f.label :map_id, "map" %>
+  <%= f.number_field :map_id %>
+  <%= f.label :rule_id, "rule" %>
+  <%= f.number_field :rule_id %>
+  <%= f.label :weapon_id, "weapon" %>
+  <%= f.number_field :weapon_id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit "Submit", disable_with: 'Submiting...' %>
+<% end %>

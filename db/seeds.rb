@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.create([
+  { id: 1, name: "ADMIN", description: "ADMIN ACCOUNT", admnflg: true, email: "1@gmail.com" }
+])
+
+Rule.create([
+  { id: 1, name: "ナワバリ" },
+  { id: 2, name: "ガチエリア" },
+  { id: 3, name: "ガチホコ" },
+  { id: 4, name: "ガチヤグラ" },
+  { id: 5, name: "ガチアサリ" }
+])
+
+Post.create([
+  { id: 1, description: "テスト投稿", user_id: 1, rule_id: 1, map_id: 1, weapon_id: 1 }
+])

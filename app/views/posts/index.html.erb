@@ -1,0 +1,30 @@
+<h1>Posts#index</h1>
+<table>
+  <tr>
+    <th>投稿者ID</th>
+    <th>投稿者名</th>
+    <th>投稿内容</th>
+    <th>詳細</th>
+    <th>編集</th>
+    <th>削除</th>
+  </tr>
+  <% if @posts.blank? %>
+    <tr>
+      <td rowspan="6">投稿がありません</td>
+    </tr>
+  <% else %>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.user_id %></td>
+        <td><%= post.user.name %></td>
+        <td><%= post.description %></td>
+        <td><%= link_to '詳細', post_path(post.id) %></td>
+        <td><%= link_to '編集', edit_post_path(post.id) %></td>
+        <td>削除</td>
+      <% end %>
+    <% end %>
+  </tr>
+</table>
+<ul>
+  <li><%= link_to '新規投稿', new_post_path %></li>
+</ul>

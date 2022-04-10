@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :posts
+  resources :rules
   devise_for :users, :controllers => {
   :confirmations => 'users/confirmations',
   :registrations => 'users/registrations',
