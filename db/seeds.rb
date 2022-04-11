@@ -20,3 +20,15 @@ Rule.create([
 Post.create([
   { id: 1, description: "テスト投稿", user_id: 1, rule_id: 1, map_id: 1, weapon_id: 1 }
 ])
+
+Map.create([
+  { id: 1, name: "フジツボスポーツクラブ" },
+  { id: 2, name: "ガンガゼ野外音楽堂" },
+  { id: 3, name: "チョウザメ漁船" },
+])
+
+Weapon.create([
+  { id: 1, name: "ワカバシューター", order: 1},
+  { id: 2, name: "モミジシューター", order: 2 },
+  { id: 3, name: "オチバシューター", order: 3 }
+])
