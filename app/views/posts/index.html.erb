@@ -25,12 +25,12 @@
         <td><%= post.user.name %></td>
         <td><%= post.description %></td>
         <td><%= link_to '詳細', post_path(post.id) %></td>
-        <td><%= link_to '編集', edit_post_path(post.id) %></td>
+        <td><%= link_to '編集', edit_post_path(post.id), data: {"turbolinks"=>false} %></td>
         <td><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
       <% end %>
     <% end %>
   </tr>
 </table>
 <ul>
-  <li><%= link_to '新規投稿', new_post_path %></li>
+  <li><%= link_to '新規投稿', new_post_path, data: {"turbolinks"=>false} %></li>
 </ul>

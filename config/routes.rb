@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :posts
+  resources :posts do
+    get :search, on: :collection
+  end
   resources :rules
   devise_for :users, :controllers => {
   :confirmations => 'users/confirmations',

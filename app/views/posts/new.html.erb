@@ -2,11 +2,12 @@
   <%= f.label :description, "メモ" %>
   <%= f.text_field :description %>
   <%= f.label :map_id, "map" %>
-  <%= f.collection_select(:map_id, @maps, :id, :name) %>
+  <%= f.collection_select(:map_id, @maps, :id, :name, selected:@map_id) %>
   <%= f.label :rule_id, "rule" %>
-  <%= f.collection_select(:rule_id, @rules, :id, :name) %>
+  <%= f.collection_select(:rule_id, @rules, :id, :name, selected:@rule_id) %>
   <%= f.label :weapon_id, "weapon" %>
-  <%= f.collection_select(:weapon_id, @weapons, :id, :name) %>
+  <%= f.collection_select(:weapon_id, @weapons, :id, :name, selected:@weapon_id) %>
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit "Submit", disable_with: 'Submiting...' %>
+  <%= f.submit "Submit" %>
 <% end %>
+<%= javascript_pack_tag 'select_change' %>

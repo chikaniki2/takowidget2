@@ -10,6 +10,9 @@ class PostsController < ApplicationController
     @maps = Map.all
     @rules = Rule.all
     @weapons = Weapon.all
+    @map_id = params[:map]
+    @rule_id = params[:rule]
+    @weapon_id = params[:weapon]
   end
 
   def create
@@ -51,7 +54,14 @@ def update
     redirect_to :posts
   end
 
-  
+  def search
+    post = Post.find_by(map: params[:map], rule: params[:rule], weapon: params[:weapon])
+    if post
+      redirect_to edit_post_path(id: post.id)
+    else
+      redirect_to new_post_path(map: params[:map], rule: params[:rule], weapon: params[:weapon])
+    end
+  end
 
   private
     def def_params
