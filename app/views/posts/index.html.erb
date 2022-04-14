@@ -34,3 +34,14 @@
 <ul>
   <li><%= link_to '新規投稿', new_post_path, data: {"turbolinks"=>false} %></li>
 </ul>
+<ul>
+  <% if @maps.present? %>
+    <% @maps.each do |map| %>
+      <li>
+        <%= link_to map.name, search_posts_path(map: map.id) %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= @res.body.force_encoding("UTF-8") %>

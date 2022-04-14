@@ -7,6 +7,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :description
       t.boolean :admnflg, default: false
+      t.integer :favorite_weapon_id
+      t.integer :last_select_weapon_id
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

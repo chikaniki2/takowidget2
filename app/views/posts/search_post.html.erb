@@ -1,0 +1,13 @@
+<h2>投稿一覧</h2>
+<ul>
+  <% if @posts.blank? %>
+    <li>投稿がありません</li>
+  <% else %>
+    <% @posts.each do |post| %>
+      <li>
+        <%= link_to post.description, post_path(id: post.id) %>
+      </li>
+    <% end %>
+  <% end %>
+
+</ul>

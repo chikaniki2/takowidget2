@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 2022_04_11_104720) do
     t.string "name"
     t.string "description"
     t.boolean "admnflg", default: false
+    t.integer "favorite_weapon_id"
+    t.integer "last_select_weapon_id"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
