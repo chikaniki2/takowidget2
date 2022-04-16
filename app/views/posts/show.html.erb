@@ -1,6 +1,11 @@
-<h1>投稿詳細</h1>
-<p>id: <%= @post.id %></p>
-<p>memo: <%= @post.description %></p>
 <p>map: <%= @post.map.name %></p>
 <p>rule: <%= @post.rule.name %></p>
 <p>weapon: <%= @post.weapon.name %></p>
+<h1>投稿詳細</h1>
+<p>memo: <%= @post.description %></p>
+
+<ul>
+  <li id="like_button_<%= @post.id %>">
+    <%= render 'shared/likebutton', post: @post %>
+  </li>
+</ul>

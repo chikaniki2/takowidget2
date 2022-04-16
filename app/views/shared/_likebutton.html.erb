@@ -1,0 +1,9 @@
+<% if current_user.liked_by?(post.id) %>
+  <%= link_to dlt_likes_path(post_id: post.id), method: :post, remote: true do %>
+    お気に入り解除
+  <% end %>
+<% else %>
+  <%= link_to likes_path(post_id: post.id), method: :post, remote: true do %>
+    お気に入り追加
+  <% end %>
+<% end %>

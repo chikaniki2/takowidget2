@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     get :search_post, on: :collection
   end
   resources :rules
+  resources :likes do
+    post :dlt, on: :collection
+  end
   devise_for :users, :controllers => {
   :confirmations => 'users/confirmations',
   :registrations => 'users/registrations',
