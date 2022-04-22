@@ -34,14 +34,77 @@
 <ul>
   <li><%= link_to '新規投稿', new_post_path, data: {"turbolinks"=>false} %></li>
 </ul>
-<ul>
+
+<div id="canvas">
+
+  <div id="schedule" class="text-center">
+    <div class="bg-secondary p-2 text-white fw-bold">スケジュール</div>
+    <% schedule_max = @data['regular'].size %>
+    <% schedule_max.times do |i| %>
+      <div class="panel_gray m-2 fw-bold">
+        <div class="text-dark">
+          <% start_time = @data['regular'][i]['start'].to_time %>
+          <% time_left = ((start_time - Time.current.ceil_to(60.minutes))/3600).floor %>
+          <% if time_left <= 0 %>
+            現在
+          <% else %>
+            <%= time_left %>時間後
+          <% end %>
+        </div>
+        <div class="text-black-50">
+          <%= start_time.strftime("%m/%d %R") %>
+        </div>
+        <div class="d-flex justify-content-around">
+          <% ['regular','gachi','league'].each do |mode| %>
+            <div class="col-4 p-1 <%= mode %>">
+              <div class="text-white"><%= @data[mode][i]['rule'] %></div>
+              <% case @data[mode][i]['rule_ex']['statink'] %>
+              <% when 'nawabari' %>
+              <% r_id = 1 %>
+              <% when 'area' %>
+              <% r_id = 2 %>
+              <% when 'hoko' %>
+              <% r_id = 3 %>
+              <% when 'yagura' %>
+              <% r_id = 4 %>
+              <% when 'asari' %>
+              <% r_id = 5 %>
+            <% end %>
+            <%= link_to @data[mode][i]['maps_ex'][0]['name'],
+              search_posts_path(map: @data[mode][i]['maps_ex'][0]['id'], rule: r_id),
+              class:'d-block text-black-50 text-decoration-none p-1 text-break mt-1',
+              data: {"turbolinks"=>false} %>
+
+            <% case @data[mode][i]['rule_ex']['statink'] %>
+            <% when 'nawabari' %>
+            <% r_id = 1 %>
+            <% when 'area' %>
+            <% r_id = 2 %>
+            <% when 'hoko' %>
+            <% r_id = 3 %>
+            <% when 'yagura' %>
+            <% r_id = 4 %>
+            <% when 'asari' %>
+            <% r_id = 5 %>
+          <% end %>
+          <%= link_to @data[mode][i]['maps_ex'][1]['name'],
+            search_posts_path(map: @data[mode][i]['maps_ex'][1]['id'], rule: r_id),
+            class:'d-block text-black-50 text-decoration-none p-1 text-break mt-1',
+            data: {"turbolinks"=>false} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+</div>
+
+<div id="maplist" class="text-center">
+  <div class="bg-secondary p-2 text-white fw-bold">マップ一覧</div>
   <% if @maps.present? %>
     <% @maps.each do |map| %>
-      <li>
-        <%= link_to map.name, search_posts_path(map: map.id) %>
-      </li>
+      <%= link_to map.name, search_posts_path(map: map.id), class:'d-block panel_gray m-2 text-black-50 text-decoration-none', data: {"turbolinks"=>false} %>
     <% end %>
   <% end %>
-</ul>
-
-<%= @res.body.force_encoding("UTF-8") %>
+</div>
+</div>

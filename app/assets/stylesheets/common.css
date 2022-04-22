@@ -1,0 +1,166 @@
+@charset "utf-8";
+
+
+/*resert*/
+
+
+body {
+  margin: 0;
+  font-family: "Hiragino maru Gothic ProN W4", "Hiragino Kaku Gothic Pro" !important;
+}
+
+#wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+#canvas {
+  padding-top: 56px;
+
+}
+
+.bg-tako {
+  background-color: #ff0043;
+}
+
+.fc-tako {
+  color: #ff0043;
+}
+
+.btn-tako-outline {
+  color: #ff0043;
+  border: 1px solid #ff0043;
+  border-radius: 5px;
+}
+
+.btn-tako {
+  background-color: #ff0043;
+  color: #FFFFFF;
+  border-radius: 5px;
+}
+
+.img_icon {
+  max-width: 100px;
+}
+
+.panel_gray {
+  background-color: #eee;
+  padding: 5px;
+}
+
+.select_pull {
+  font-size: 12px;
+  padding: 5px;
+  width: 100%;
+  background: #eee;
+  box-sizing: border-box;
+  margin: 10px auto;
+  color: #ff0043;
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #ff0043;
+}
+
+
+.show {
+  position: fixed;
+  top: 56px;
+  width: 100%;
+  z-index: 5;
+  left: 0px;
+}
+
+/* ハンバーガー */
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.nav-link {
+  color: #FFF !important;
+}
+
+/*  */
+
+
+
+
+/* スケジュール */
+
+.regular div {
+  background: #228b22;
+}
+
+.regular a {
+  background: #98fb98;
+}
+
+.gachi div {
+  background: #ff8c00;
+}
+
+.gachi a {
+  background: #f5deb3;
+}
+
+.league div {
+  background: #ff69b4;
+}
+
+.league a {
+  background: #ffc0cb;
+}
+
+/*  */
+
+
+/* アニメーション */
+.anim_fadeout {
+  animation: anim_fadeout 1s linear 0s 1 normal forwards;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes anim_fadeout {
+  0% {
+    opacity: 1;
+    width: auto;
+    height: auto;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  99% {
+    opacity: 0;
+    width: auto;
+    height: auto;
+  }
+
+  100% {
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+  }
+}
+
+/*  */
+
+
+/* PC専用スタイル */
+@media (min-width:768px) {
+
+  #canvas,
+  .pcw {
+    width: 750px;
+    margin: auto;
+    ;
+  }
+}

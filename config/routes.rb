@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   end
   resources :rules
   resources :likes do
-    post :dlt, on: :collection
+    post :dlt,      on: :collection
+    get  :list,     on: :collection
+    get  :list_all, on: :collection
   end
   devise_for :users, :controllers => {
   :confirmations => 'users/confirmations',

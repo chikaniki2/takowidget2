@@ -2,14 +2,16 @@ require 'uri'
 require 'net/http'
 
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: :index
+  
   def index
     @posts = Post.all
-    # 自分の投稿だけなら
-    # @posts = current_user.posts
     @maps = Map.all
 
     uri = URI('https://spla2.yuu26.com/schedule')
-    @res = Net::HTTP.get_response(uri)
+    api_result = Net::HTTP.get_response(uri).body.force_encoding("UTF-8")
+    @data = JSON.parse(api_result)['result']
+    
   end
 
   def show
@@ -32,6 +34,7 @@ class PostsController < ApplicationController
       flash[:notice] = "新規登録しました"
       redirect_to :posts
     else
+      flash[:error] = "登録に失敗しました"
       render "new"
     end
   end
@@ -54,6 +57,7 @@ def update
         flash[:notice] = "ID「#{@post.id}」の情報を更新しました"
         redirect_to :posts
       else
+        flash[:error] = "更新に失敗しました"
         render "edit"
       end
   end
@@ -66,18 +70,21 @@ def update
   end
 
   def search
-    # 武器idの決定。最終選択武器を取得。ないならメイン武器。さらになければ1つ目。
+    # 武器idの決定。最後に選択した武器を取得。ないならメイン武器。それでも無ければ武器IDfirstを設定。
     if not params.has_key?('weapon')
       if current_user.last_select_weapon_id.present?
         weapon = current_user.last_select_weapon_id
       elsif current_user.favorite_weapon_id.present?
         weapon = current_user.favorite_weapon_id
       else
-        weapon = 1
+        weapon = Weapon.first.id
       end
     else
       weapon = params[:weapon]
     end
+
+    #最後に選択した武器を更新
+    current_user.update_attribute(:last_select_weapon_id, weapon)
 
     post = Post.find_by(map: params[:map], rule: params[:rule], weapon: weapon)
     if post
