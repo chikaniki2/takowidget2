@@ -62,7 +62,7 @@ body {
 }
 
 
-.show {
+.io_show {
   position: fixed;
   top: 56px;
   width: 100%;
@@ -159,7 +159,7 @@ body {
 
   #canvas,
   .pcw {
-    width: 750px;
+    width: 750px !important;
     margin: auto;
     ;
   }

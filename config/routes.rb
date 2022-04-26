@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+
+  root 'posts#index'
+
   resources :posts do
     get :search, on: :collection
     get :search_post, on: :collection
   end
+
   resources :rules
+
   resources :likes do
     post :dlt,      on: :collection
     get  :list,     on: :collection
@@ -14,5 +19,9 @@ Rails.application.routes.draw do
   :registrations => 'users/registrations',
   :sessions => 'users/sessions',
   :passwords => 'users/passwords'
-}
+  }
+
+  resources :users do
+    get :profile, on: :collection
+  end
 end

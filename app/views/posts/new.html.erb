@@ -1,13 +1,30 @@
-<%= form_with model: @post, local: true do |f| %>
-  <%= f.label :description, "メモ" %>
-  <%= f.text_field :description %>
-  <%= f.label :map_id, "map" %>
-  <%= f.collection_select(:map_id, @maps, :id, :name, selected:@map_id) %>
-  <%= f.label :rule_id, "rule" %>
-  <%= f.collection_select(:rule_id, @rules, :id, :name, selected:@rule_id) %>
-  <%= f.label :weapon_id, "weapon" %>
-  <%= f.collection_select(:weapon_id, @weapons, :id, :name, selected:@weapon_id) %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit "Submit" %>
-<% end %>
+<div id="panel_pulllist" class="panel_gray">
+
+  <%= form_with model: @post, local: true do |f| %>
+
+    <div class="selectbox">
+      <%= f.collection_select :map_id, @maps, :id, :name, {selected:@map_id},{class:'select_pull'} %>
+    </div>
+
+    <div class="selectbox">
+      <%= f.collection_select :rule_id, @rules, :id, :name, {selected:@rule_id}, {class:"select_pull"} %>
+    </div>
+
+    <div class="selectbox">
+      <%= f.collection_select :weapon_id, @weapons, :id, :name, {selected:@weapon_id}, {class:"select_pull"} %>
+    </div>
+
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
+    <div class="panel_io"></div>
+    <div id="io_tgt" class="panel_gray pt-2 pb-2 text-center">
+      <%= f.submit "保存する", class:"fw-bold text-decoration-none fc-tako" %>
+    </div>
+
+    <div class="p-1 m-1 border border-secondary">
+      <%= f.text_field :description %>
+    </div>
+  <% end %>
+</div>
+
 <%= javascript_pack_tag 'select_change' %>

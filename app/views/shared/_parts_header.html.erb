@@ -1,0 +1,38 @@
+<nav class="navbar navbar-light bg-tako fixed-top">
+  <div class="container-fluid pcw">
+    <span class="navbar-brand fw-bold text-white" href="#">TAKOWidget2 R</span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'スケジュール', posts_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">マップ一覧</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">メモ検索</a>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'ユーザー設定', profile_users_path , class:"nav-link"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'アカウント設定', edit_user_registration_path(id: current_user.id) , class: "nav-link"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
+
+      </ul>
+    </div>
+  </div>
+</nav>
