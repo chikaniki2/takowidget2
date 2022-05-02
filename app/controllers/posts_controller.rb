@@ -10,9 +10,60 @@ class PostsController < ApplicationController
 
     uri = URI('https://spla2.yuu26.com/schedule')
     api_result = Net::HTTP.get_response(uri).body.force_encoding("UTF-8")
-    @data = JSON.parse(api_result)['result']
-    
+    data = JSON.parse(api_result)['result']
+
+    @schedules = []
+    schedule_max = data['regular'].size # レギュラーの最大数をスケジュール数として用いる
+    schedule_max.times do |i|
+      start_time = data['regular'][i]['start'].to_time
+      time_left = ((start_time - Time.current.ceil_to(60.minutes))/3600).floor # 開始までの時間
+      start_time_string = start_time.strftime("%m/%d %R") #開始時間
+
+      # モード別のルールとマップ取得
+      modes = []
+        ['regular','gachi','league'].each do |mode|
+          mode_name = mode
+          rule_name = data[mode][i]['rule']
+          case data[mode][i]['rule_ex']['statink']
+            when 'nawabari'
+              rule_id = 1
+            when 'area'
+              rule_id = 2
+            when 'hoko'
+              rule_id = 3
+            when 'yagura'
+              rule_id = 4
+            when 'asari'
+              rule_id = 5
+          end
+          #マップ2種を取得
+          maps = []
+          2.times{ |map_index|
+            map_name = data[mode][i]['maps_ex'][map_index]['name']
+            map_id =  data[mode][i]['maps_ex'][map_index]['id']
+            # mapsハッシュに格納
+            maps << {
+              map_name: map_name,
+              map_id: map_id
+            }
+          }
+          # modesハッシュに格納
+          modes << {
+            mode_name: mode_name,
+            rule_name: rule_name,
+            rule_id: rule_id,
+            maps: maps
+          }
+        end
+        # スケジュール情報として配列に格納
+      @schedules << {
+        time_left: time_left,
+        start_time_string: start_time_string,
+        modes: modes
+      }
+    end
   end
+
 
   def show
     @post = Post.find(params[:id])
@@ -86,16 +137,27 @@ def update
     #最後に選択した武器を更新
     current_user.update_attribute(:last_select_weapon_id, weapon)
 
-    post = Post.find_by(map_id: params[:map], rule_id: params[:rule], weapon_id: weapon)
+    # ルールが指定されていない場合はfirsIDを指定
+    if not params.has_key?('rule')
+      rule = Rule.first.id
+    else
+      rule = params[:rule]
+    end
+
+    post = Post.find_by(map_id: params[:map], rule_id: rule, weapon_id: weapon)
     if post.present?
       redirect_to edit_post_path(id: post.id)
     else
-      redirect_to new_post_path(map: params[:map], rule: params[:rule], weapon: weapon)
+      redirect_to new_post_path(map: params[:map], rule: rule, weapon: weapon)
     end
   end
 
   def search_post
     @posts = Post.where(map: params[:map], rule: params[:rule], weapon: params[:weapon])
+  end
+
+  def admnpnl
+    @posts = Post.all
   end
 
   private

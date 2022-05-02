@@ -1,0 +1,33 @@
+<h1>Posts#index</h1>
+<table>
+  <tr>
+    <th>マップID</th>
+    <th>ルールID</th>
+    <th>武器ID</th>
+    <th>投稿者ID</th>
+    <th>投稿者名</th>
+    <th>投稿内容</th>
+    <th>詳細</th>
+    <th>編集</th>
+    <th>削除</th>
+  </tr>
+  <% if @posts.blank? %>
+    <tr>
+      <td rowspan="6">投稿がありません</td>
+    </tr>
+  <% else %>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.map.name %></td>
+        <td><%= post.rule.name %></td>
+        <td><%= post.weapon.name %></td>
+        <td><%= post.user_id %></td>
+        <td><%= post.user.name %></td>
+        <td><%= post.description %></td>
+        <td><%= link_to '詳細', post_path(post.id) %></td>
+        <td><%= link_to '編集', edit_post_path(post.id), data: {"turbolinks"=>false} %></td>
+        <td><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+      <% end %>
+    <% end %>
+  </tr>
+</table>

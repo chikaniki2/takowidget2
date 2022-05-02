@@ -1,102 +1,39 @@
-<h1>Posts#index</h1>
-<table>
-  <tr>
-    <th>マップID</th>
-    <th>ルールID</th>
-    <th>武器ID</th>
-    <th>投稿者ID</th>
-    <th>投稿者名</th>
-    <th>投稿内容</th>
-    <th>詳細</th>
-    <th>編集</th>
-    <th>削除</th>
-  </tr>
-  <% if @posts.blank? %>
-    <tr>
-      <td rowspan="6">投稿がありません</td>
-    </tr>
-  <% else %>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.map.name %></td>
-        <td><%= post.rule.name %></td>
-        <td><%= post.weapon.name %></td>
-        <td><%= post.user_id %></td>
-        <td><%= post.user.name %></td>
-        <td><%= post.description %></td>
-        <td><%= link_to '詳細', post_path(post.id) %></td>
-        <td><%= link_to '編集', edit_post_path(post.id), data: {"turbolinks"=>false} %></td>
-        <td><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
-      <% end %>
-    <% end %>
-  </tr>
-</table>
-<ul>
-  <li><%= link_to '新規投稿', new_post_path, data: {"turbolinks"=>false} %></li>
-</ul>
-
 <div id="canvas">
-
   <div id="schedule" class="text-center">
-    <div class="bg-secondary p-2 text-white fw-bold">スケジュール</div>
-    <% schedule_max = @data['regular'].size %>
-    <% schedule_max.times do |i| %>
+    <div class="bg-secondary p-2 text-white fw-bold">
+      スケジュール
+    </div>
+
+    <% @schedules.each do |schedule| %>
       <div class="panel_gray m-2 fw-bold">
         <div class="text-dark">
-          <% start_time = @data['regular'][i]['start'].to_time %>
-          <% time_left = ((start_time - Time.current.ceil_to(60.minutes))/3600).floor %>
-          <% if time_left <= 0 %>
+          <% if schedule[:time_left] <= 0 %>
             現在
           <% else %>
-            <%= time_left %>時間後
+            <%= schedule[:time_left] %>時間後
           <% end %>
         </div>
         <div class="text-black-50">
-          <%= start_time.strftime("%m/%d %R") %>
+          <%= schedule[:start_time_string] %>
         </div>
         <div class="d-flex justify-content-around">
-          <% ['regular','gachi','league'].each do |mode| %>
-            <div class="col-4 p-1 <%= mode %>">
-              <div class="text-white"><%= @data[mode][i]['rule'] %></div>
-              <% case @data[mode][i]['rule_ex']['statink'] %>
-              <% when 'nawabari' %>
-              <% r_id = 1 %>
-              <% when 'area' %>
-              <% r_id = 2 %>
-              <% when 'hoko' %>
-              <% r_id = 3 %>
-              <% when 'yagura' %>
-              <% r_id = 4 %>
-              <% when 'asari' %>
-              <% r_id = 5 %>
-            <% end %>
-            <%= link_to @data[mode][i]['maps_ex'][0]['name'],
-              search_posts_path(map: @data[mode][i]['maps_ex'][0]['id'], rule: r_id),
-              class:'d-block text-black-50 text-decoration-none p-1 text-break mt-1',
-              data: {"turbolinks"=>false} %>
-
-            <% case @data[mode][i]['rule_ex']['statink'] %>
-            <% when 'nawabari' %>
-            <% r_id = 1 %>
-            <% when 'area' %>
-            <% r_id = 2 %>
-            <% when 'hoko' %>
-            <% r_id = 3 %>
-            <% when 'yagura' %>
-            <% r_id = 4 %>
-            <% when 'asari' %>
-            <% r_id = 5 %>
+          <% schedule[:modes].each do |mode| %>
+            <div class="col-4 p-1 <%= mode[:mode_name] %>">
+              <div class="text-white"><%= mode[:rule_name] %></div>
+              <% mode[:maps].each do |map| %>
+                <%= link_to map[:map_name],
+                  search_posts_path(map: map[:map_id], rule: mode[:rule_id]),
+                  class:'d-block text-black-50 text-decoration-none p-1 text-break mt-1',
+                  data: {"turbolinks"=>false}
+                %>
+              <% end %>
+            </div>
           <% end %>
-          <%= link_to @data[mode][i]['maps_ex'][1]['name'],
-            search_posts_path(map: @data[mode][i]['maps_ex'][1]['id'], rule: r_id),
-            class:'d-block text-black-50 text-decoration-none p-1 text-break mt-1',
-            data: {"turbolinks"=>false} %>
         </div>
-      <% end %>
-    </div>
-  </div>
-<% end %>
+      </div>
+    <% end %>
 
+  </div>
 </div>
 
 <div id="maplist" class="text-center">
