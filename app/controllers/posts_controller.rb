@@ -86,8 +86,8 @@ def update
     #最後に選択した武器を更新
     current_user.update_attribute(:last_select_weapon_id, weapon)
 
-    post = Post.find_by(map: params[:map], rule: params[:rule], weapon: weapon)
-    if post
+    post = Post.find_by(map_id: params[:map], rule_id: params[:rule], weapon_id: weapon)
+    if post.present?
       redirect_to edit_post_path(id: post.id)
     else
       redirect_to new_post_path(map: params[:map], rule: params[:rule], weapon: weapon)

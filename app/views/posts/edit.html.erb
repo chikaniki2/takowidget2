@@ -18,13 +18,14 @@
 
     <div class="panel_io"></div>
     <div id="io_tgt" class="panel_gray pt-2 pb-2 text-center">
-      <%= f.submit "保存する", class:"fw-bold text-decoration-none fc-tako" %>
+      <%= f.button "保存する", class:"fw-bold text-decoration-none fc-tako", id:"button_submit" %>
     </div>
 
     <div class="p-1 m-1 border border-secondary">
-      <%= f.text_field :description %>
+      <%= f.rich_text_area :description, value:@post.description %>
     </div>
   <% end %>
 </div>
 <%= link_to "一覧に戻る", :posts %>
+
 <%= javascript_pack_tag 'select_change' %>

@@ -17,6 +17,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function link_selected() {
     location.href = location.protocol + '//' + location.host + '/posts/search?map=' + select_map.value + '&rule=' + select_rule.value + '&weapon=' + select_weapon.value;
-    //http://localhost:3000/posts/search?map=1&rule=1&weapon=2
   }
 });

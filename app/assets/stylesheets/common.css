@@ -116,6 +116,9 @@ body {
 
 /*  */
 
+#quill-editor-form {
+  display: none;
+}
 
 /* アニメーション */
 .anim_fadeout {
