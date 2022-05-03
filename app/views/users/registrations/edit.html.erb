@@ -1,15 +1,20 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>アカウント設定</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name, "ユーザー名" %><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :current_password,"パスワード" %><br />
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, "新しいパスワード（変更したい場合のみ入力）" %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <br />
@@ -18,18 +23,11 @@
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation,"新パスワードの確認（変更したい場合は入力）" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "アカウント情報を更新する" %>
   </div>
 <% end %>
-
-<%= link_to "Back", :back %>

@@ -82,10 +82,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(def_params)
     if @post.save
-      flash[:notice] = "新規登録しました"
+      flash[:notice] = "メモを更新しました"
       redirect_to :posts
     else
-      flash[:error] = "登録に失敗しました"
+      flash[:alert] = "更新に失敗しました"
       render "new"
     end
   end
@@ -95,20 +95,25 @@ class PostsController < ApplicationController
   end
 
   def edit
-    # TODO current userのみが編集できるようにすること
     @post = Post.find(params[:id])
+    if @post.user_id != current_user.id
+      redirect_to post_path(id: @post.id)
+    end
     @maps = Map.all
     @rules = Rule.all
     @weapons = Weapon.all
+    @map_id = @post.map_id
+    @rule_id = @post.rule_id
+    @weapon_id = @post.weapon_id
   end
 
 def update
     @post = Post.find(params[:id])
       if @post.update(def_params) 
-        flash[:notice] = "ID「#{@post.id}」の情報を更新しました"
+        flash[:notice] = "メモを更新しました"
         redirect_to :posts
       else
-        flash[:error] = "更新に失敗しました"
+        flash[:alert] = "更新に失敗しました"
         render "edit"
       end
   end
@@ -157,6 +162,9 @@ def update
   end
 
   def admnpnl
+    if current_user.admnflg==false
+      redirect_to posts_path
+    end
     @posts = Post.all
   end
 

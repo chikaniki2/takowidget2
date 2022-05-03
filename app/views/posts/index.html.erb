@@ -1,4 +1,11 @@
 <div id="canvas">
+
+  <% if flash[:notice] %>
+    <div class="anim_fadeout btn btn-secondary">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
   <div id="schedule" class="text-center">
     <div class="bg-secondary p-2 text-white fw-bold">
       スケジュール
@@ -43,5 +50,4 @@
       <%= link_to map.name, search_posts_path(map: map.id), class:'d-block panel_gray m-2 text-black-50 text-decoration-none', data: {"turbolinks"=>false} %>
     <% end %>
   <% end %>
-</div>
 </div>

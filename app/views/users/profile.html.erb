@@ -9,26 +9,25 @@
 <%= form_with model: @user, local: true do |f| %>
 
   <div>
-    <%= f.label :name ,"ユーザー名" %>
-    <span class="badge bg-danger">必須</span>
-  </div>
-  <div class="col-8">
-    <%= f.text_field :name ,value:@user.name,  class: "form-control" %>
-  </div>
-
-  <div>
-    <%= f.label :description ,"自己紹介" %>
-  </div>
-  <div>
-    <%= f.text_area :description, value:@user.description, class:'form-control' %>
+    <div>
+      <%= f.label :description ,"自己紹介" %>
+    </div>
+    <div>
+      <%= f.text_area :description, value:@user.description, class:'form-control' %>
+    </div>
   </div>
 
   <div>
-    <%= f.collection_select :favorite_weapon_id, @weapons, :id, :name, {selected:@favorite_weapon_id}, {class:"select_pull"} %>
+    <div>
+      <%= f.label :description ,"お気に入り武器" %>
+    </div>
+    <div>
+      <%= f.collection_select :favorite_weapon_id, @weapons, :id, :name, {selected:@favorite_weapon_id}, {class:"select_pull"} %>
+    </div>
   </div>
 
   <div>
-    <%= f.submit "更新する", class: "btn btn-primary" %>
+    <%= f.submit "プロフィールを更新する", class: "btn btn-primary" %>
   </div>
 
 <% end %>

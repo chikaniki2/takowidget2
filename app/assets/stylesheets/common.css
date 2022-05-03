@@ -9,6 +9,11 @@ body {
   font-family: "Hiragino maru Gothic ProN W4", "Hiragino Kaku Gothic Pro" !important;
 }
 
+a:hover,
+hover_opacity:hover {
+  opacity: 0.7;
+}
+
 #wrapper {
   padding: 0;
   margin: 0;
@@ -24,7 +29,7 @@ body {
 }
 
 .fc-tako {
-  color: #ff0043;
+  color: #ff0043 !important;
 }
 
 .btn-tako-outline {
@@ -61,6 +66,11 @@ body {
   border: 1px solid #ff0043;
 }
 
+
+/* 保存ボタンのフロート描写 */
+.io_show_margin {
+  margin-bottom: 56px;
+}
 
 .io_show {
   position: fixed;
