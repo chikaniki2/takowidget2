@@ -1,33 +1,35 @@
-<h2>アカウント設定</h2>
+<div class="text-center card mt-5">
+  <div class="panel_w500">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+    <h2>アカウント設定</h2>
 
-  <div class="field">
-    <%= f.label :name, "ユーザー名" %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :current_password,"パスワード" %><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+      <div class="field">
+        <%= f.label :name, "ユーザー名", class:"form-label" %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"form-control" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password, "新しいパスワード（変更したい場合のみ入力）" %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <div class="field">
+        <%= f.label :current_password,"パスワード", class:"form-label" %><br />
+        <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, "新しいパスワード（変更したい場合のみ入力）", class:"form-label" %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation,"新パスワードの確認（変更したい場合は入力）" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "アカウント情報を更新する", class:"btn fw-bold text-decoration-none fc-tako btn-tako-outline" %>
+      </div>
     <% end %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation,"新パスワードの確認（変更したい場合は入力）" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "アカウント情報を更新する" %>
-  </div>
-<% end %>
+</div>

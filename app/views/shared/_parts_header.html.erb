@@ -12,7 +12,7 @@
             <%= link_to 'スケジュール', posts_path, class:"nav-link" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">マップ一覧</a>
+            <%= link_to 'マップ一覧', posts_path(anchor: 'maplist'), class:"nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to 'ユーザー設定', profile_users_path , class:"nav-link"%>
@@ -26,6 +26,7 @@
         <% else %>
           <li class="nav-item">
             <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+            <%= link_to "新規アカウント登録", new_user_registration_path, class: "nav-link" %>
           </li>
         <% end %>
 

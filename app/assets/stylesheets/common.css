@@ -21,7 +21,11 @@ hover_opacity:hover {
 
 #canvas {
   padding-top: 56px;
+}
 
+#maplist {
+  margin-top: -56px;
+  padding-top: 56px;
 }
 
 .bg-tako {
@@ -33,9 +37,9 @@ hover_opacity:hover {
 }
 
 .btn-tako-outline {
-  color: #ff0043;
-  border: 1px solid #ff0043;
-  border-radius: 5px;
+  color: #ff0043 !important;
+  border: 1px solid #ff0043 !important;
+  border-radius: 5px !important;
 }
 
 .btn-tako {
@@ -51,6 +55,15 @@ hover_opacity:hover {
 .panel_gray {
   background-color: #eee;
   padding: 5px;
+}
+
+.panel_w500 {
+  width: 90%;
+  margin: 30px auto;
+}
+
+.panel_w500 div {
+  margin: 20px auto;
 }
 
 .select_pull {
@@ -175,5 +188,9 @@ hover_opacity:hover {
     width: 750px !important;
     margin: auto;
     ;
+  }
+
+  .panel_w500 {
+    width: 500px;
   }
 }
