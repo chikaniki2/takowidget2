@@ -9,6 +9,10 @@ body {
   font-family: "Hiragino maru Gothic ProN W4", "Hiragino Kaku Gothic Pro" !important;
 }
 
+figcaption {
+  display: none;
+}
+
 a:hover,
 hover_opacity:hover {
   opacity: 0.7;
