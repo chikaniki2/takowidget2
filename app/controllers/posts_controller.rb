@@ -107,7 +107,7 @@ class PostsController < ApplicationController
     @weapon_id = @post.weapon_id
   end
 
-def update
+  def update
     @post = Post.find(params[:id])
       if @post.update(def_params) 
         flash[:notice] = "メモを更新しました"

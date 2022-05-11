@@ -12,10 +12,17 @@
     "trix": "^1.2.0",
     "turbolinks": "^5.2.0",
     "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "@prettier/plugin-ruby": "^1.5.2"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@prettier/plugin-ruby": "^3.0.0",
+    "prettier": "^2.6.2",
     "webpack-dev-server": "^3"
+  },
+  "scripts": {
+    "format": "find ./app -name *.rb | xargs node_modules/.bin/prettier --write",
+    "lint": "bundle exec guard"
   }
 }
