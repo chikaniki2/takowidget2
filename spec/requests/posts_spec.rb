@@ -67,4 +67,40 @@ RSpec.describe "Posts", type: :request do
       expect(response).to redirect_to edit_post_path(postdata_u1_m1_r1_w2.id)
     end
   end
+
+  describe "GET new" do
+    before do
+      sign_in user1
+    end
+    it "プルダウンに表示するマップ、ルール、ブキ名が取得できていること" do
+      get new_post_path(map: map2.id, rule: rule1.id, weapon: weapon1.id)
+      expect(response.body).to include(map2.name, rule1.name, weapon1.name)
+    end
+  end
+
+  describe "GET edit" do
+    before do
+      sign_in user1
+    end
+    context "自分の投稿を編集するケース" do
+      before do
+        get edit_post_path(postdata_u1_m1_r1_w1)
+      end
+
+      it "プルダウンに表示するマップ、ルール、ブキ名が取得できていること" do
+        expect(response.body).to include(map1.name, rule1.name, weapon1.name)
+      end
+
+      it "投稿内容が取得できていること" do
+        expect(response.body).to include "テスト投稿_u1_m1_r1_w1"
+      end
+    end
+
+    context "他人の投稿を編集しようとするケース" do
+      it "別のユーザーの投稿を編集しようとしたら、showにリダイレクトされること" do
+        get edit_post_path(postdata_u2_m1_r1_w2)
+        expect(response).to redirect_to post_path(postdata_u2_m1_r1_w2.id)
+      end
+    end
+  end
 end
