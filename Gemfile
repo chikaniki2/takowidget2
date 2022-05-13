@@ -43,6 +43,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "factory_bot_rails"
   gem "rack-mini-profiler", "~> 2.0"
+  gem "rspec-retry"
 end
 
 group :development do
