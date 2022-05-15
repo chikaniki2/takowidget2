@@ -9,12 +9,9 @@ RSpec.feature "Users" do
   given(:weapon2) { create(:weapon, name: "キャンピングシェルター") }
 
   given(:user1) { create(:user, name: "testuser1", password: "123456", favorite_weapon_id: weapon1.id) }
-  given(:user2) { create(:user, name: "testuser2", password: "123456", favorite_weapon_id: weapon2.id) }
 
   given!(:postdata_u1_m1_r1_w1) { create(:post, user_id: user1.id, map_id: map1.id, rule_id: rule1.id, weapon_id: weapon1.id, description: "テスト投稿_u1_m1_r1_w1") }
   given!(:postdata_u1_m1_r1_w2) { create(:post, user_id: user1.id, map_id: map1.id, rule_id: rule1.id, weapon_id: weapon2.id, description: "テスト投稿_u1_m1_r1_w2") }
-
-  given!(:postdata_u2_m1_r1_w2) { create(:post, user_id: user2.id, map_id: map1.id, rule_id: rule1.id, weapon_id: weapon1.id, description: "テスト投稿_u2_m1_r1_w2") }
 
   feature "post#index" do
     context "ログイン前の場合" do
@@ -62,6 +59,53 @@ RSpec.feature "Users" do
         click_link "ログアウト"
         expect(page).to have_selector "div", text: "スケジュール"
       end
+    end
+  end
+
+  feature "post#new", js: true do
+    background do
+      sign_in user1
+    end
+    scenario "プルダウンを操作したとき、投稿データがないなら、該当パラメータのnewに移動すること" do
+      visit new_post_path(map: map2.id, rule: rule1.id, weapon: weapon1.id)
+      select "#{weapon2.name}", from: "post[weapon_id]"
+      page.evaluate_script("document.getElementById('post_weapon_id').dispatchEvent(new Event('change'))")
+      uri = URI.parse(current_url)
+      expect("#{uri.path}?#{uri.query}").to eq new_post_path(map: map2.id, rule: rule1.id, weapon: weapon2.id)
+    end
+
+    scenario "プルダウンを操作したとき、投稿データがあるなら、editに移動すること" do
+      visit new_post_path(map: map2.id, rule: rule1.id, weapon: weapon1.id)
+      select "#{map1.name}", from: "post[map_id]"
+      page.evaluate_script("document.getElementById('post_map_id').dispatchEvent(new Event('change'))")
+      expect(current_path).to eq edit_post_path(postdata_u1_m1_r1_w1.id)
+    end
+
+    scenario "保存して閉じるを押したら、投稿が保存されてindexへ移動すること" do
+      visit new_post_path(map: map2.id, rule: rule1.id, weapon: weapon1.id)
+      find("#button_submit").click
+      expect(page).to have_content "メモを更新しました"
+      expect(current_path).to eq posts_path
+    end
+  end
+
+  feature "post#edit", js: true do
+    background do
+      sign_in user1
+    end
+    scenario "プルダウンを操作したとき、投稿データがあるなら該当のeditへ移動すること" do
+      visit edit_post_path(postdata_u1_m1_r1_w1.id)
+      select "#{weapon2.name}", from: "post[weapon_id]"
+      page.evaluate_script("document.getElementById('post_weapon_id').dispatchEvent(new Event('change'))")
+      uri = URI.parse(current_url)
+      expect(current_path).to eq edit_post_path(postdata_u1_m1_r1_w2.id)
+    end
+
+    scenario "保存して閉じるを押したら、投稿が保存されてindexへ移動すること" do
+      visit edit_post_path(postdata_u1_m1_r1_w1.id)
+      find("#button_submit").click
+      expect(page).to have_content "メモを更新しました"
+      expect(current_path).to eq posts_path
     end
   end
 end

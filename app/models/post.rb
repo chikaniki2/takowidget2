@@ -7,6 +7,7 @@ class Post < ApplicationRecord
   has_rich_text :description
 
   validates :user_id, presence: true
+  validates :map_id, presence: true
   validates :rule_id, presence: true
   validates :weapon_id, presence: true
 end
