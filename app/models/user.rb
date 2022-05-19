@@ -2,11 +2,14 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-        :recoverable, :rememberable, :validatable,
-        :authentication_keys => [:name] # 認証のキーをメールから名前へ
+         :recoverable, :rememberable, :validatable,
+         :authentication_keys => [:name] # 認証のキーをメールから名前へ
 
   validates_uniqueness_of :name
   validates_presence_of :name
+
+  validates_uniqueness_of :nickname
+  validates_presence_of :nickname
 
   # nameを利用してログイン
   def self.find_first_by_auth_conditions(warden_conditions)
@@ -32,6 +35,7 @@ class User < ApplicationRecord
 
   has_many :posts
   has_many :likes
+
   def liked_by?(post_id)
     likes.where(post_id: post_id).exists?
   end

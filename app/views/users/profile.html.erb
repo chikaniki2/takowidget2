@@ -13,14 +13,14 @@
 
       <div>
         <div>
-          <%= f.label :description ,"自己紹介", class:"form-label" %>
-          <%= f.text_area :description, value:@user.description, class:'form-control' %>
+          <%= f.label :nickname ,"自己紹介", class:"form-label" %>
+          <%= f.text_area :nickname, value:@user.nickname, class:'form-control' %>
         </div>
       </div>
 
       <div>
         <div>
-          <%= f.label :description ,"お気に入り武器", class:"form-label" %>
+          <%= f.label :favorite_weapon_id ,"お気に入り武器", class:"form-label" %>
           <%= f.collection_select :favorite_weapon_id, @weapons, :id, :name, {selected:@favorite_weapon_id}, {class:"select_pull"} %>
         </div>
       </div>

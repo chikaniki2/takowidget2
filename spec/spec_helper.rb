@@ -14,11 +14,7 @@
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require "capybara/rspec"
-require "rspec/retry"
 RSpec.configure do |config|
-  config.verbose_retry = true # リトライ状況を表示
-  config.display_try_failure_messages = true # リトライを実行した理由(例外)を表示
-  config.around { |ex| ex.run_with_retry(retry: 3, retry_wait: 1) } # 最大3回リトライ(実行時に1秒待つ)
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

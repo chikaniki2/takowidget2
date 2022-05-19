@@ -1,5 +1,4 @@
 require "rails_helper"
-require "factory_bot_rails"
 
 RSpec.describe "Posts", type: :request do
   let(:map1) { create(:map, name: "モンガラキャンプ場") }
@@ -8,8 +7,8 @@ RSpec.describe "Posts", type: :request do
   let(:weapon1) { create(:weapon, name: "ワカバシューター") }
   let(:weapon2) { create(:weapon, name: "キャンピングシェルター") }
 
-  let(:user1) { create(:user, name: "testuser1", password: "123456", favorite_weapon_id: weapon1.id) }
-  let(:user2) { create(:user, name: "testuser2", password: "123456", favorite_weapon_id: weapon2.id) }
+  let(:user1) { create(:user, name: "testuser1", password: "123456", nickname: "user1", favorite_weapon_id: weapon1.id) }
+  let(:user2) { create(:user, name: "testuser2", password: "123456", nickname: "user2", favorite_weapon_id: weapon2.id) }
 
   let!(:postdata_u1_m1_r1_w1) { create(:post, user_id: user1.id, map_id: map1.id, rule_id: rule1.id, weapon_id: weapon1.id, description: "テスト投稿_u1_m1_r1_w1") }
   let!(:postdata_u1_m1_r1_w2) { create(:post, user_id: user1.id, map_id: map1.id, rule_id: rule1.id, weapon_id: weapon2.id, description: "テスト投稿_u1_m1_r1_w2") }

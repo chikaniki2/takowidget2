@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_03_111856) do
+ActiveRecord::Schema.define(version: 2022_05_19_101114) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -63,6 +63,13 @@ ActiveRecord::Schema.define(version: 2022_05_03_111856) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "oembeds", force: :cascade do |t|
+    t.string "url"
+    t.string "raw_info"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.integer "map_id"
@@ -81,7 +88,7 @@ ActiveRecord::Schema.define(version: 2022_05_03_111856) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.string "nickname"
     t.boolean "admnflg", default: false
     t.integer "favorite_weapon_id"
     t.integer "last_select_weapon_id"
