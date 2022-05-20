@@ -30,7 +30,7 @@
               <% mode[:maps].each do |map| %>
                 <%= link_to map[:map_name],
                   search_posts_path(map: map[:map_id], rule: mode[:rule_id]),
-                  class:'d-block text-black-50 text-decoration-none p-1 text-break mt-1',
+                  class:'text-black-50 text-decoration-none p-1 text-break mt-1',
                   data: {"turbolinks"=>false}
                 %>
               <% end %>

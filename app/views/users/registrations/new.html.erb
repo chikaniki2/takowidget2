@@ -12,6 +12,11 @@
       </div>
 
       <div class="field">
+        <%= f.label :nickname, "ニックネーム（他のユーザーに表示されます）", class:"form-label" %><br />
+        <%= f.text_field :nickname, autofocus: true, autocomplete: "name", class:"form-control" %>
+      </div>
+
+      <div class="field">
         <%= f.label :password, "パスワード（6文字以上）", class:"form-label" %>
         <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
       </div>

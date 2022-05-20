@@ -1,7 +1,6 @@
 require "rails_helper"
 
 RSpec.feature "Users" do
-  include Devise::Test::IntegrationHelpers
   given(:map1) { create(:map, name: "モンガラキャンプ場") }
   given(:map2) { create(:map, name: "タチウオパーキング") }
   given(:rule1) { create(:rule, name: "ナワバリ") }
@@ -10,8 +9,8 @@ RSpec.feature "Users" do
 
   given(:user1) { create(:user, name: "testuser1", password: "123456", nickname: "user1", favorite_weapon_id: weapon1.id) }
 
-  given!(:postdata_u1_m1_r1_w1) { create(:post, user_id: user1.id, map_id: map1.id, rule_id: rule1.id, weapon_id: weapon1.id, description: "テスト投稿_u1_m1_r1_w1") }
-  given!(:postdata_u1_m1_r1_w2) { create(:post, user_id: user1.id, map_id: map1.id, rule_id: rule1.id, weapon_id: weapon2.id, description: "テスト投稿_u1_m1_r1_w2") }
+  given!(:postdata_u1_m1_r1_w1) { create(:post, user_id: user1.id, map_id: map1.id, rule_id: rule1.id, weapon_id: weapon1.id) }
+  given!(:postdata_u1_m1_r1_w2) { create(:post, user_id: user1.id, map_id: map1.id, rule_id: rule1.id, weapon_id: weapon2.id) }
 
   feature "post#index" do
     context "ログイン前の場合" do
@@ -97,7 +96,6 @@ RSpec.feature "Users" do
       visit edit_post_path(postdata_u1_m1_r1_w1.id)
       select "#{weapon2.name}", from: "post[weapon_id]"
       page.evaluate_script("document.getElementById('post_weapon_id').dispatchEvent(new Event('change'))")
-      uri = URI.parse(current_url)
       expect(current_path).to eq edit_post_path(postdata_u1_m1_r1_w2.id)
     end
 
@@ -106,6 +104,15 @@ RSpec.feature "Users" do
       find("#button_submit").click
       expect(page).to have_content "メモを更新しました"
       expect(current_path).to eq posts_path
+    end
+
+    scenario "メモを編集して更新できること" do
+      visit edit_post_path(postdata_u1_m1_r1_w1.id)
+      fill_in_rich_text_area "post_description", with: "編集テスト"
+      find("#button_submit").click
+      expect(page).to have_content "メモを更新しました"
+      visit edit_post_path(postdata_u1_m1_r1_w1.id)
+      expect(page).to have_content "編集テスト"
     end
   end
 end

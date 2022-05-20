@@ -141,6 +141,16 @@ hover_opacity:hover {
   background: #ffc0cb;
 }
 
+.regular a,
+.gachi a,
+.league a {
+  height: 70px;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+
+}
+
 /*  */
 
 #quill-editor-form {
