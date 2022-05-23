@@ -1,9 +1,6 @@
 @charset "utf-8";
 
 
-/*resert*/
-
-
 body {
   margin: 0;
   font-family: "Hiragino maru Gothic ProN W4", "Hiragino Kaku Gothic Pro" !important;
@@ -30,6 +27,12 @@ hover_opacity:hover {
 #maplist {
   margin-top: -56px;
   padding-top: 56px;
+}
+
+#maplist a{
+  display: block;
+  margin: 0.5em 0px;
+  padding: 1em 0px;
 }
 
 .bg-tako {
@@ -83,6 +86,25 @@ hover_opacity:hover {
   border: 1px solid #ff0043;
 }
 
+
+.show_username {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.show_taglist {
+  padding-left: 0;
+  list-style: none;
+  color: #555;
+  font-size: 14px;
+}
+
+.midashi {
+  background-color: #555;
+  color: #FFF;
+  font-weight: bold;
+  padding:1em 0px;
+}
 
 /* 保存ボタンのフロート描写 */
 .io_show_margin {

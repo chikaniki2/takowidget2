@@ -7,12 +7,12 @@
   <% end %>
 
   <div id="schedule" class="text-center">
-    <div class="bg-secondary p-2 text-white fw-bold">
+    <div class="midashi">
       スケジュール
     </div>
 
     <% @schedules.each do |schedule| %>
-      <div class="panel_gray m-2 fw-bold">
+      <div class="panel_gray mt-2 mb-2 fw-bold">
         <div class="text-dark">
           <% if schedule[:time_left] <= 0 %>
             現在
@@ -30,8 +30,7 @@
               <% mode[:maps].each do |map| %>
                 <%= link_to map[:map_name],
                   search_posts_path(map: map[:map_id], rule: mode[:rule_id]),
-                  class:'text-black-50 text-decoration-none p-1 text-break mt-1',
-                  data: {"turbolinks"=>false}
+                  class:'text-black-50 text-decoration-none p-1 text-break mt-1'
                 %>
               <% end %>
             </div>
@@ -44,10 +43,10 @@
 </div>
 
 <div id="maplist" class="text-center">
-  <div class="bg-secondary p-2 text-white fw-bold">マップ一覧</div>
+  <div class="midashi">マップ一覧</div>
   <% if @maps.present? %>
     <% @maps.each do |map| %>
-      <%= link_to map.name, search_posts_path(map: map.id), class:'d-block panel_gray m-2 text-black-50 text-decoration-none', data: {"turbolinks"=>false} %>
+      <%= link_to map.name, search_posts_path(map: map.id), class:'panel_gray text-black-50 text-decoration-none' %>
     <% end %>
   <% end %>
 </div>

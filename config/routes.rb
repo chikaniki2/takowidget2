@@ -5,10 +5,7 @@ Rails.application.routes.draw do
   resources :posts do
     get :search, on: :collection
     get :search_post, on: :collection
-    get :admnpnl, on: :collection
   end
-
-  resources :rules
 
   resources :likes do
     post :dlt,      on: :collection

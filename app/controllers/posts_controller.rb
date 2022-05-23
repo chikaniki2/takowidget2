@@ -67,6 +67,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    if @post.user == current_user
+      redirect_to edit_post_path(id: @post.id)
+    end
   end
 
   def new
@@ -89,14 +92,10 @@ class PostsController < ApplicationController
       render "new"
     end
   end
-
-  def show
-    @post = Post.find(params[:id])
-  end
-
+  
   def edit
     @post = Post.find(params[:id])
-    if @post.user_id != current_user.id
+    if @post.user != current_user
       redirect_to post_path(id: @post.id)
     end
     @maps = Map.all
@@ -149,7 +148,7 @@ class PostsController < ApplicationController
       rule = params[:rule]
     end
 
-    post = Post.find_by(map_id: params[:map], rule_id: rule, weapon_id: weapon)
+    post = Post.find_by(user_id: current_user, map_id: params[:map], rule_id: rule, weapon_id: weapon)
     if post.present?
       redirect_to edit_post_path(id: post.id)
     else
@@ -159,13 +158,6 @@ class PostsController < ApplicationController
 
   def search_post
     @posts = Post.where(map: params[:map], rule: params[:rule], weapon: params[:weapon])
-  end
-
-  def admnpnl
-    if current_user.admnflg==false
-      redirect_to posts_path
-    end
-    @posts = Post.all
   end
 
   private
