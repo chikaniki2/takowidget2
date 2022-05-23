@@ -19,7 +19,7 @@ RSpec.describe Users, type: :model do
       end
 
       it "nameが重複していると登録できないこと" do
-        success_user = User.create(name: "user1", password: "123456", nickname: "nickname1", favorite_weapon_id: weapon1.id)
+        User.create(name: "user1", password: "123456", nickname: "nickname1", favorite_weapon_id: weapon1.id)
         faile_user = User.create(name: "user1", password: "123456", nickname: "nickname2", favorite_weapon_id: weapon1.id)
         expect(faile_user.errors[:name]).to include("はすでに存在します")
       end
@@ -30,7 +30,7 @@ RSpec.describe Users, type: :model do
       end
 
       it "ニックネームが重複していると登録できないこと" do
-        faile_user = User.create(name: "user1", password: "123456", nickname: "nickname1", favorite_weapon_id: weapon1.id)
+        User.create(name: "user1", password: "123456", nickname: "nickname1", favorite_weapon_id: weapon1.id)
         faile_user = User.create(name: "user2", password: "123456", nickname: "nickname1", favorite_weapon_id: weapon1.id)
         expect(faile_user.errors[:nickname]).to include("はすでに存在します")
       end

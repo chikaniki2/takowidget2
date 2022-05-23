@@ -1,5 +1,6 @@
 require "rails_helper"
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Post, type: :model do
   let!(:map1) { create(:map, name: "モンガラキャンプ場") }
   let(:rule1) { create(:rule, name: "ナワバリ") }
@@ -25,7 +26,7 @@ RSpec.describe Post, type: :model do
       faile_post = Post.create(
         map_id: map1.id,
         rule_id: rule1.id,
-        weapon_id: weapon1.id,
+        weapon_id: weapon1.id
       )
       faile_post.valid?
       expect(faile_post.errors[:user_id]).to include("を入力してください")
@@ -35,7 +36,7 @@ RSpec.describe Post, type: :model do
       faile_post = Post.create(
         user_id: user1.id,
         rule_id: rule1.id,
-        weapon_id: weapon1.id,
+        weapon_id: weapon1.id
       )
       faile_post.valid?
       expect(faile_post.errors[:map_id]).to include("を入力してください")
@@ -45,7 +46,7 @@ RSpec.describe Post, type: :model do
       faile_post = Post.create(
         user_id: user1.id,
         map_id: map1.id,
-        weapon_id: weapon1.id,
+        weapon_id: weapon1.id
       )
       faile_post.valid?
       expect(faile_post.errors[:rule_id]).to include("を入力してください")
@@ -55,7 +56,7 @@ RSpec.describe Post, type: :model do
       faile_post = Post.create(
         user_id: user1.id,
         map_id: map1.id,
-        rule_id: rule1.id,
+        rule_id: rule1.id
       )
       faile_post.valid?
       expect(faile_post.errors[:weapon_id]).to include("を入力してください")
@@ -66,7 +67,7 @@ RSpec.describe Post, type: :model do
         user_id: user1.id,
         map_id: map1.id + 1,
         rule_id: rule1.id,
-        weapon_id: weapon1.id,
+        weapon_id: weapon1.id
       )
       faile_post.valid?
       expect(faile_post.errors[:map_id]).to include("は存在しません")
@@ -77,7 +78,7 @@ RSpec.describe Post, type: :model do
         user_id: user1.id,
         map_id: map1.id,
         rule_id: rule1.id + 1,
-        weapon_id: weapon1.id,
+        weapon_id: weapon1.id
       )
       faile_post.valid?
       expect(faile_post.errors[:rule_id]).to include("は存在しません")
@@ -88,7 +89,7 @@ RSpec.describe Post, type: :model do
         user_id: user1.id,
         map_id: map1.id,
         rule_id: rule1.id,
-        weapon_id: weapon1.id + 1,
+        weapon_id: weapon1.id + 1
       )
       faile_post.valid?
       expect(faile_post.errors[:weapon_id]).to include("は存在しません")
@@ -99,10 +100,11 @@ RSpec.describe Post, type: :model do
         user_id: user1.id,
         map_id: map1.id,
         rule_id: rule1.id,
-        weapon_id: weapon1.id,
+        weapon_id: weapon1.id
       )
       faile_post.valid?
       expect(faile_post.errors[:user_id]).to include("はすでに存在します")
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

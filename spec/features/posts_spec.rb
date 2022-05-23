@@ -1,5 +1,6 @@
 require "rails_helper"
 
+# rubocop:disable Metrics/BlockLength
 RSpec.feature "Users" do
   given(:map1) { create(:map, name: "モンガラキャンプ場") }
   given(:map2) { create(:map, name: "タチウオパーキング") }
@@ -36,9 +37,9 @@ RSpec.feature "Users" do
         visit posts_path
         find("#maplist a:nth-of-type(1)").click
         visit edit_post_path(postdata_u1_m1_r1_w1.id)
-        expect(find("#post_map_id").value).to eq("#{map1.id}")
-        expect(find("#post_rule_id").value).to eq("#{rule1.id}")
-        expect(find("#post_weapon_id").value).to eq("#{weapon1.id}")
+        expect(find("#post_map_id").value).to eq(map1.id.to_s)
+        expect(find("#post_rule_id").value).to eq(rule1.id.to_s)
+        expect(find("#post_weapon_id").value).to eq(weapon1.id.to_s)
       end
 
       scenario "ログイン済みならナビメニューから各リンクに正常にアクセスできること" do
@@ -67,7 +68,7 @@ RSpec.feature "Users" do
     end
     scenario "プルダウンを操作したとき、投稿データがないなら、該当パラメータのnewに移動すること" do
       visit new_post_path(map: map2.id, rule: rule1.id, weapon: weapon1.id)
-      select "#{weapon2.name}", from: "post[weapon_id]"
+      select weapon2.name.to_s, from: "post[weapon_id]"
       page.evaluate_script("document.getElementById('post_weapon_id').dispatchEvent(new Event('change'))")
       uri = URI.parse(current_url)
       expect("#{uri.path}?#{uri.query}").to eq new_post_path(map: map2.id, rule: rule1.id, weapon: weapon2.id)
@@ -75,7 +76,7 @@ RSpec.feature "Users" do
 
     scenario "プルダウンを操作したとき、投稿データがあるなら、editに移動すること" do
       visit new_post_path(map: map2.id, rule: rule1.id, weapon: weapon1.id)
-      select "#{map1.name}", from: "post[map_id]"
+      select map1.name.to_s, from: "post[map_id]"
       page.evaluate_script("document.getElementById('post_map_id').dispatchEvent(new Event('change'))")
       expect(current_path).to eq edit_post_path(postdata_u1_m1_r1_w1.id)
     end
@@ -94,7 +95,7 @@ RSpec.feature "Users" do
     end
     scenario "プルダウンを操作したとき、投稿データがあるなら該当のeditへ移動すること" do
       visit edit_post_path(postdata_u1_m1_r1_w1.id)
-      select "#{weapon2.name}", from: "post[weapon_id]"
+      select weapon2.name.to_s, from: "post[weapon_id]"
       page.evaluate_script("document.getElementById('post_weapon_id').dispatchEvent(new Event('change'))")
       expect(current_path).to eq edit_post_path(postdata_u1_m1_r1_w2.id)
     end
@@ -116,3 +117,4 @@ RSpec.feature "Users" do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

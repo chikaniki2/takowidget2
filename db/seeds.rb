@@ -14,7 +14,6 @@ Rule.create([
   { id: 5, name: "ガチアサリ" }
 ])
 
-
 Map.create([
   { id: 0, name: "フジツボスポーツクラブ" },
   { id: 1, name: "ガンガゼ野外音楽堂" },

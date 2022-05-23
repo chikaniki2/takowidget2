@@ -67,9 +67,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    if @post.user == current_user
-      redirect_to edit_post_path(id: @post.id)
-    end
+    return unless @post.user == current_user
+    
+    redirect_to edit_post_path(id: @post.id)
   end
 
   def new
