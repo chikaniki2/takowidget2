@@ -104,6 +104,7 @@ hover_opacity:hover {
   color: #FFF;
   font-weight: bold;
   padding:1em 0px;
+  text-align: center;
 }
 
 /* 保存ボタンのフロート描写 */
@@ -175,8 +176,40 @@ hover_opacity:hover {
 
 /*  */
 
-#quill-editor-form {
-  display: none;
+/*立ち回りリスト*/
+
+#post_list a {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  background-color: #EEE;
+  padding: 10px;
+  margin: 1em 0px;
+  border-radius: 15px;
+}
+
+#post_list p {
+  margin: 0px;
+  padding: 10px 0px;
+}
+
+.post_user {
+  font-weight: bold;
+}
+
+.post_description {
+  border-top: 1px solid #333;
+}
+
+.post_likes, .post_weapon {
+  padding-bottom: 0px!important;
+  font-size: 14px;
+  color: #555;
+}
+
+.form-check-input:checked{
+  background-color: #ff0043 !important;
+  border-color: #ff0043 !important
 }
 
 /* アニメーション */

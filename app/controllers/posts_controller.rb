@@ -74,12 +74,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @maps = Map.all
-    @rules = Rule.all
-    @weapons = Weapon.all
-    @map_id = params[:map]
-    @rule_id = params[:rule]
-    @weapon_id = params[:weapon]
+    get_maps_rules_weapons
   end
 
   def create
@@ -157,11 +152,43 @@ class PostsController < ApplicationController
   end
 
   def search_post
-    @posts = Post.where(map: params[:map], rule: params[:rule], weapon: params[:weapon])
+    
+    get_maps_rules_weapons
+    
+    return unless params.has_key?('map') && params.has_key?('rule') && params.has_key?('weapon') && params.has_key?('category')
+    
+    if params[:category] == "1"
+      posts_list = Post.joins(:weapon).where(weapon: {category: @weapons.find_by(id: params[:weapon]).category}).where(map_id: params[:map], rule_id: params[:rule]).where.not(user_id: current_user.id)
+      @checkflg = true
+    else
+      posts_list = Post.where(map_id: params[:map], rule_id: params[:rule], weapon_id: params[:weapon]).where.not(user_id: current_user.id)
+      @checkflg = false
+    end
+    
+    @posts = []
+    posts_list.each do |post|
+      @posts << {
+        id: post.id,
+        user: post.user.nickname,
+        description: post.description.body.to_plain_text().gsub(/[\n]/,"").strip.truncate(40),
+        weapon: post.weapon.name,
+        likes: post.likes.count
+      }
+    end
+    @posts.sort_by!{|post| post[:likes]}.reverse!
   end
 
   private
     def def_params
       params.require(:post).permit(:description, :user_id, :map_id, :rule_id, :weapon_id)
+    end
+    
+    def get_maps_rules_weapons
+      @maps = Map.all
+      @rules = Rule.all
+      @weapons = Weapon.all
+      @map_id = params.has_key?('map') ? params[:map] : Map.first.id
+      @rule_id = params.has_key?('map') ? params[:rule] : Map.first.id
+      @weapon_id = params.has_key?('map') ? params[:weapon] : Map.first.id
     end
 end

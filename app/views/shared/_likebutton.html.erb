@@ -1,9 +1,9 @@
 <% if current_user.liked_by?(post.id) %>
-  <%= link_to dlt_likes_path(post_id: post.id), method: :post, remote: true do %>
-    お気に入り解除
+  <%= link_to dlt_likes_path(post_id: post.id), method: :post, remote: true, class: "btn-tako text-decoration-none p-5 pt-2 pb-2 mt-2 mb-2 d-block" do %>
+    ♥ いいね
   <% end %>
 <% else %>
-  <%= link_to likes_path(post_id: post.id), method: :post, remote: true do %>
-    お気に入り追加
+  <%= link_to likes_path(post_id: post.id), method: :post, remote: true, class: "btn-tako-outline text-decoration-none p-5 pt-2 pb-2 mt-2 mb-2 d-block" do %>
+    ♡ いいね
   <% end %>
 <% end %>
