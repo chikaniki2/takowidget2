@@ -176,6 +176,7 @@ class PostsController < ApplicationController
       }
     end
     @posts.sort_by!{|post| post[:likes]}.reverse!
+    @posts = Kaminari.paginate_array(@posts).page(params[:page])
   end
 
   private

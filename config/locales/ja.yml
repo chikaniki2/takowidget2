@@ -1,8 +1,15 @@
 ja: 
   activerecord: 
     models: 
-      like: イイネ
+      like: いいね
       post: 投稿
       user: ユーザー
     post: 
       description: メモ
+  views:
+    pagination:
+      first: '最初'
+      last: '最後'
+      previous: '前'
+      next: '次'
+      truncate: '...'

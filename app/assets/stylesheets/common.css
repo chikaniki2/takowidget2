@@ -177,18 +177,21 @@ hover_opacity:hover {
 /*  */
 
 /*立ち回りリスト*/
+#post_list {
+  margin: 10px;
+}
 
-#post_list a {
+.post_card {
   display: block;
   text-decoration: none;
-  color: #333;
+  color: #333!important;
   background-color: #EEE;
   padding: 10px;
   margin: 1em 0px;
   border-radius: 15px;
 }
 
-#post_list p {
+.post_card p {
   margin: 0px;
   padding: 10px 0px;
 }
@@ -210,6 +213,41 @@ hover_opacity:hover {
 .form-check-input:checked{
   background-color: #ff0043 !important;
   border-color: #ff0043 !important
+}
+
+.pagination {
+  padding-top: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination>span {
+  text-align: center;
+  border: 1px solid #DDD;
+  border-right: none;
+}
+
+.pagination>span:first-of-type {
+  border-radius: 10px 0px 0px 10px;
+}
+
+.pagination>span:last-of-type {
+  border-right: 1px solid #DDD;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.pagination a, .pagination .current {
+  color: #ff0043!important;
+  display: block;
+  text-decoration: none;
+  min-width: 50px;
+  padding: 0.5em;
+}
+
+.pagination .current {
+  background-color: #ff0043;
+  color: #fff!important;
+  font-weight: bold;
 }
 
 /* アニメーション */
@@ -261,5 +299,9 @@ hover_opacity:hover {
 
   .panel_w500 {
     width: 500px;
+  }
+  
+  #post_list {
+    margin: 10px 0px;
   }
 }

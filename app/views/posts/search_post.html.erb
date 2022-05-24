@@ -35,7 +35,7 @@
     <% else %>
       <% @posts.each do |post| %>
         <% if post[:description].present? %>
-          <%= link_to post_path(post[:id]) do %>
+          <%= link_to post_path(post[:id]), class: "post_card" do %>
             <div>
               <p class="post_user">
                 <%= post[:user] %> さんのメモ
@@ -53,6 +53,7 @@
           <% end %>
         <% end %>
       <% end %>
+      <%= paginate @posts %>
     <% end %>
   <% end %>
 </div>
