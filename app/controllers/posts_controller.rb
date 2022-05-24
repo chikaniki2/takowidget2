@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @schedules = []
     schedule_max = data['regular'].size # レギュラーの最大数をスケジュール数として用いる
     schedule_max.times do |i|
-      start_time = data['regular'][i]['start'].to_time
+      start_time = data['regular'][i]['start_utc'].to_time
       time_left = ((start_time - Time.current.ceil_to(60.minutes))/3600).floor # 開始までの時間
       start_time_string = start_time.strftime("%m/%d %R") #開始時間
 

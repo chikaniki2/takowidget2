@@ -14,6 +14,7 @@ module Takowidget2
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
     config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
     config.hosts << "5cf6416ae2ad4fa1a2570fc0a07afb1f.vfs.cloud9.ap-northeast-1.amazonaws.com"
     # Configuration for the application, engines, and railties goes here.
     #
