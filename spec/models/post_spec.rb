@@ -1,6 +1,5 @@
 require "rails_helper"
 
-# rubocop:disable Metrics/BlockLength
 RSpec.describe Post, type: :model do
   let!(:map1) { create(:map, name: "モンガラキャンプ場") }
   let(:rule1) { create(:rule, name: "ナワバリ") }
@@ -107,4 +106,3 @@ RSpec.describe Post, type: :model do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

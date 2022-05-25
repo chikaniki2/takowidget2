@@ -74,7 +74,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    get_maps_rules_weapons
+    maps_rules_weapons
   end
 
   def create
@@ -155,13 +155,14 @@ class PostsController < ApplicationController
 
   def search_post
     
-    get_maps_rules_weapons
+    maps_rules_weapons
     
     return unless params.has_key?('map') && params.has_key?('rule') && params.has_key?('weapon') && params.has_key?('category')
     
     if params[:category] == "1"
-      posts_list = Post.joins(:weapon).where(weapon: { category: @weapons.find_by(id: params[:weapon]).category }).where(map_id: params[:map], 
-                                                                                                                         rule_id: params[:rule]).where.not(user_id: current_user.id)
+      posts_list = Post.joins(:weapon)
+                       .where(weapon: { category: @weapons.find_by(id: params[:weapon]).category })
+                       .where(map_id: params[:map],rule_id: params[:rule]).where.not(user_id: current_user.id)
       @checkflg = true
     else
       posts_list = Post.where(map_id: params[:map], rule_id: params[:rule], weapon_id: params[:weapon]).where.not(user_id: current_user.id)
@@ -187,7 +188,7 @@ class PostsController < ApplicationController
       params.require(:post).permit(:description, :user_id, :map_id, :rule_id, :weapon_id)
     end
     
-    def get_maps_rules_weapons
+    def maps_rules_weapons
       @maps = Map.all
       @rules = Rule.all
       @weapons = Weapon.all

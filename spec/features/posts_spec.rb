@@ -1,6 +1,5 @@
 require "rails_helper"
 
-# rubocop:disable Metrics/BlockLength
 RSpec.feature "Users" do
   given(:map1) { create(:map, name: "モンガラキャンプ場") }
   given(:map2) { create(:map, name: "タチウオパーキング") }
@@ -117,4 +116,3 @@ RSpec.feature "Users" do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

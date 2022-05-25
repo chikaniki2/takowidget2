@@ -1,7 +1,6 @@
 require "rails_helper"
 
 RSpec.feature "Users" do
-  # include Devise::Test::IntegrationHelpers
   given!(:weapon1) { create(:weapon, name: "ワカバシューター") }
   given!(:weapon2) { create(:weapon, name: "キャンピングシェルター") }
   given!(:user1) { create(:user, name: "user1", password: "123456", nickname: "testuser1", favorite_weapon_id: weapon1.id) }
