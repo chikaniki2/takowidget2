@@ -4,8 +4,12 @@ ja:
       like: いいね
       post: 投稿
       user: ユーザー
-    post: 
-      description: メモ
+    attributes:
+      post:
+        description: メモ
+      user:
+        name: ユーザーID
+        nickname: ニックネーム
   views:
     pagination:
       first: '最初'

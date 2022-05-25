@@ -107,6 +107,21 @@ hover_opacity:hover {
   text-align: center;
 }
 
+#error_explanation h2 {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--bs-danger);
+}
+
+#error_explanation li {
+  font-size: 14px;
+  color: var(--bs-danger);
+}
+
+.field br {
+  display: none;
+}
+
 /* 保存ボタンのフロート描写 */
 .io_show_margin {
   margin-bottom: 56px;
