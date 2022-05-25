@@ -160,12 +160,13 @@ class PostsController < ApplicationController
     return unless params.has_key?('map') && params.has_key?('rule') && params.has_key?('weapon') && params.has_key?('category')
     
     if params[:category] == "1"
-      posts_list = Post.joins(:weapon)
+      posts_list = Post.includes([:user]).includes([:rich_text_description]).includes([:weapon]).joins(:weapon)
                        .where(weapon: { category: @weapons.find_by(id: params[:weapon]).category })
                        .where(map_id: params[:map],rule_id: params[:rule]).where.not(user_id: current_user.id)
       @checkflg = true
     else
-      posts_list = Post.where(map_id: params[:map], rule_id: params[:rule], weapon_id: params[:weapon]).where.not(user_id: current_user.id)
+      posts_list = Post.includes([:user]).includes([:rich_text_description]).includes([:weapon])
+                       .where(map_id: params[:map], rule_id: params[:rule], weapon_id: params[:weapon]).where.not(user_id: current_user.id)
       @checkflg = false
     end
     

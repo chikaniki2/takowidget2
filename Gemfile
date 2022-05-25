@@ -59,6 +59,7 @@ group :development do
   gem "guard", require: false
   gem "guard-rubocop", require: false
   gem "rubocop", require: false
+  gem 'bullet'
 end
 
 group :test do
