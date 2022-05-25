@@ -4,16 +4,24 @@ RSpec.describe "Posts", type: :request do
   let(:map1) { create(:map, name: "モンガラキャンプ場") }
   let(:map2) { create(:map, name: "タチウオパーキング") }
   let(:rule1) { create(:rule, name: "ナワバリ") }
-  let(:weapon1) { create(:weapon, name: "ワカバシューター") }
-  let(:weapon2) { create(:weapon, name: "キャンピングシェルター") }
+  let(:weapon1) { create(:weapon, name: "ワカバシューター", category: "わかばシューター") }
+  let(:weapon2) { create(:weapon, name: "キャンピングシェルター", category: "キャンピングシェルター") }
+  let(:weapon3) { create(:weapon, name: "おちばシューター", category: "わかばシューター") }
 
   let(:user1) { create(:user, name: "testuser1", password: "123456", nickname: "user1", favorite_weapon_id: weapon1.id) }
   let(:user2) { create(:user, name: "testuser2", password: "123456", nickname: "user2", favorite_weapon_id: weapon2.id) }
 
-  let!(:postdata_u1_m1_r1_w1) { create(:post, user_id: user1.id, map_id: map1.id, rule_id: rule1.id, weapon_id: weapon1.id, description: "テスト投稿_u1_m1_r1_w1") }
-  let!(:postdata_u1_m1_r1_w2) { create(:post, user_id: user1.id, map_id: map1.id, rule_id: rule1.id, weapon_id: weapon2.id, description: "テスト投稿_u1_m1_r1_w2") }
+  let!(:postdata_u1_m1_r1_w1) { create(:post, user_id: user1.id, map_id: map1.id, rule_id: rule1.id, weapon_id: weapon1.id) }
+  let!(:desc1) { ActionText::RichText.create(name: "description", record_type: "Post", record_id: postdata_u1_m1_r1_w1.id, body: "テスト投稿_u1_m1_r1_w1") }
 
-  let!(:postdata_u2_m1_r1_w2) { create(:post, user_id: user2.id, map_id: map1.id, rule_id: rule1.id, weapon_id: weapon1.id, description: "テスト投稿_u2_m1_r1_w2") }
+  let!(:postdata_u1_m1_r1_w2) { create(:post, user_id: user1.id, map_id: map1.id, rule_id: rule1.id, weapon_id: weapon2.id) }
+  let!(:desc2) { ActionText::RichText.create(name: "description", record_type: "Post", record_id: postdata_u1_m1_r1_w2.id, body: "テスト投稿_u1_m1_r1_w2") }
+
+  let!(:postdata_u1_m1_r1_w3) { create(:post, user_id: user1.id, map_id: map1.id, rule_id: rule1.id, weapon_id: weapon3.id) }
+  let!(:desc3) { ActionText::RichText.create(name: "description", record_type: "Post", record_id: postdata_u1_m1_r1_w3.id, body: "テスト投稿_u1_m1_r1_w3") }
+
+  let!(:postdata_u2_m1_r1_w2) { create(:post, user_id: user2.id, map_id: map1.id, rule_id: rule1.id, weapon_id: weapon1.id) }
+  let!(:desc4) { ActionText::RichText.create(name: "description", record_type: "Post", record_id: postdata_u2_m1_r1_w2.id, body: "テスト投稿_u2_m1_r1_w2") }
 
   describe "GET Post#index" do
     before do
@@ -100,6 +108,22 @@ RSpec.describe "Posts", type: :request do
         get edit_post_path(postdata_u2_m1_r1_w2)
         expect(response).to redirect_to post_path(postdata_u2_m1_r1_w2.id)
       end
+    end
+  end
+
+  describe "GET search_post" do
+    before do
+      sign_in user2
+    end
+
+    it "ほかのユーザーの投稿が取得できること" do
+      get search_post_posts_path(map: map1.id, rule: rule1.id, weapon: weapon1.id, category: 0)
+      expect(response.body).to include('#ワカバシューター')
+    end
+
+    it "同一categoryの投稿も取得できること" do
+      get search_post_posts_path(map: map1.id, rule: rule1.id, weapon: weapon1.id, category: 1)
+      expect(response.body).to include('#おちばシューター')
     end
   end
 end
