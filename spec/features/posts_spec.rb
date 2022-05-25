@@ -53,7 +53,7 @@ RSpec.feature "Users" do
         expect(page).to have_selector "h3", text: "プロフィール編集"
 
         click_link "アカウント設定"
-        expect(page).to have_selector "h2", text: "アカウント設定"
+        expect(page).to have_selector "h3", text: "アカウント設定"
 
         click_link "ログアウト"
         expect(page).to have_selector "div", text: "スケジュール"
