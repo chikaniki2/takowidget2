@@ -78,6 +78,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    params[:post]['user_id'] = current_user.id
     @post = Post.new(def_params)
     if @post.save
       flash[:notice] = "メモを更新しました"
@@ -102,6 +103,7 @@ class PostsController < ApplicationController
   end
 
   def update
+    params[:post]['user_id'] = current_user.id
     @post = Post.find(params[:id])
       if @post.update(def_params) 
         flash[:notice] = "メモを更新しました"
@@ -158,7 +160,8 @@ class PostsController < ApplicationController
     return unless params.has_key?('map') && params.has_key?('rule') && params.has_key?('weapon') && params.has_key?('category')
     
     if params[:category] == "1"
-      posts_list = Post.joins(:weapon).where(weapon: {category: @weapons.find_by(id: params[:weapon]).category}).where(map_id: params[:map], rule_id: params[:rule]).where.not(user_id: current_user.id)
+      posts_list = Post.joins(:weapon).where(weapon: { category: @weapons.find_by(id: params[:weapon]).category }).where(map_id: params[:map], 
+                                                                                                                         rule_id: params[:rule]).where.not(user_id: current_user.id)
       @checkflg = true
     else
       posts_list = Post.where(map_id: params[:map], rule_id: params[:rule], weapon_id: params[:weapon]).where.not(user_id: current_user.id)
@@ -170,12 +173,12 @@ class PostsController < ApplicationController
       @posts << {
         id: post.id,
         user: post.user.nickname,
-        description: post.description.body.to_plain_text().gsub(/[\n]/,"").strip.truncate(40),
+        description: post.description.body.to_plain_text.gsub(/\n/,"").strip.truncate(40),
         weapon: post.weapon.name,
         likes: post.likes.count
       }
     end
-    @posts.sort_by!{|post| post[:likes]}.reverse!
+    @posts.sort_by!{ |post| post[:likes] }.reverse!
     @posts = Kaminari.paginate_array(@posts).page(params[:page])
   end
 
