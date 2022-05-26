@@ -12,7 +12,7 @@
   <% @schedules.each do |schedule| %>
     <div class="panel_gray mt-2 mb-2 fw-bold">
       <div class="text-dark">
-        <% if schedule[:time_left] <= 0 %>
+        <% if schedule[:time_left] < 0 %>
           現在
         <% else %>
           <%= schedule[:time_left] %>時間後

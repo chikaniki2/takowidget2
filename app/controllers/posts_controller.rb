@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     schedule_max.times do |i|
       start_time = data['regular'][i]['start_utc'].to_time
       time_left = ((start_time - Time.current.ceil_to(60.minutes))/3600).floor # 開始までの時間
-      start_time_string = start_time.strftime("%m/%d %R") #開始時間
+      start_time_string = data['regular'][i]['start'].to_time.strftime("%m/%d %R") #開始時間
 
       # モード別のルールとマップ取得
       modes = []
