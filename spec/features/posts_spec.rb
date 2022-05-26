@@ -127,10 +127,23 @@ RSpec.feature "Users" do
     scenario "メモを編集して更新できること" do
       visit edit_post_path(postdata_u1_m1_r1_w1.id)
       fill_in_rich_text_area "post_description", with: "編集テスト"
+      attach_file("#{Rails.root}/spec/files/test_image.jpg") do
+        find('.trix-button--icon-attach').click
+      end
       find("#button_submit").click
       expect(page).to have_content "メモを更新しました"
       visit edit_post_path(postdata_u1_m1_r1_w1.id)
       expect(page).to have_content "編集テスト"
+      expect(page).to have_selector '.attachment__name', visible: false, text: 'test_image.jpg'
+    end
+
+    scenario "指定した画像拡張子以外はアップできないこと" do
+      visit edit_post_path(postdata_u1_m1_r1_w1.id)
+      page.attach_file("#{Rails.root}/spec/files/test_image.tiff") do
+        find('.trix-button--icon-attach').click
+      end
+      expect(page.driver.browser.switch_to.alert.text).to eq "添付できる拡張子は、jpg、jpeg、png、gifのみです"
+      page.driver.browser.switch_to.alert.dismiss
     end
 
     scenario "立ち回り検索に移動した際、選択していたマップ・ルール・ブキが、プルダウンで自動選択されていること" do

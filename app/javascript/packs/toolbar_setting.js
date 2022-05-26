@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.addEventListener("trix-file-accept", function (event) {
     // 画像の拡張子をチェック
-    const acceptedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+    const acceptedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
     if (!acceptedTypes.includes(event.file.type)) {
       event.preventDefault();
-      alert("添付できる拡張子は、jpg、jpeg、png、mp4のみです");
+      alert("添付できる拡張子は、jpg、jpeg、png、gifのみです");
     }
     // 画像のbyte数をチェック
     const maxFileSize = 1024 * 1024 * 2 // 2MB 
