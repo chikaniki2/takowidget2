@@ -1,0 +1,51 @@
+<% if flash[:notice] %>
+  <div class="anim_fadeout btn btn-secondary">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<%= image_tag 'title01.jpg' %>
+
+<div id="schedule" class="text-center">
+  <div class="midashi">
+    スケジュール
+  </div>
+
+  <% @schedules.each do |schedule| %>
+    <div class="panel_gray mt-2 mb-2 fw-bold">
+      <div class="text-dark">
+        <% if schedule[:time_left] < 0 %>
+          現在
+        <% else %>
+          <%= schedule[:time_left] %>時間後
+        <% end %>
+      </div>
+      <div class="text-black-50">
+        <%= schedule[:start_time_string] %>
+      </div>
+      <div class="d-flex justify-content-around">
+        <% schedule[:modes].each do |mode| %>
+          <div class="col-4 p-1 <%= mode[:mode_name] %>">
+            <div class="text-white pt-2 pb-2"><%= mode[:rule_name] %></div>
+            <% mode[:maps].each do |map| %>
+              <%= link_to map[:map_name],
+                search_posts_path(map: map[:map_id], rule: mode[:rule_id]),
+                class:'text-black-50 text-decoration-none p-1 text-break mt-1'
+              %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+<div id="maplist" class="text-center">
+  <div class="midashi">マップ一覧</div>
+  <% if @maps.present? %>
+    <% @maps.each do |map| %>
+      <%= link_to map.name, search_posts_path(map: map.id), class:'panel_gray text-black-50 text-decoration-none' %>
+    <% end %>
+  <% end %>
+</div>

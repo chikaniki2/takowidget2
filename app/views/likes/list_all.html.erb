@@ -1,0 +1,13 @@
+<ul>
+  <% if @posts.blank? %>
+    <li>
+      いいねした投稿がありません。
+    </li>
+  <% else %>
+    <% @posts.each do |post| %>
+      <li>
+        <%= post.id %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

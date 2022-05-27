@@ -1,0 +1,37 @@
+<div class="text-center card mt-5">
+  <div class="panel_w500">
+    <h2>ログイン</h2>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+      <% if  flash[:notice] %>
+        <div class="alert alert-success"><%= flash[:notice] %></div>
+      <% elsif flash[:alert] %>
+        <div class="alert alert-danger"><%= flash[:alert] %></div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :name, "ユーザーID", class:"form-label" %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, "パスワード", class:"form-label" %><br />
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me, class: "form-check-input" %>
+          <%= f.label :remember_me,"ログイン情報を保存する", class:"form-check-label" %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "ログイン", class:"btn fw-bold text-decoration-none fc-tako btn-tako-outline" %>
+      </div>
+    <% end %>
+
+    <%= link_to '新規アカウント登録はこちら', new_user_registration_path, class: "d-block m-3" %>
+  </div>
+</div>

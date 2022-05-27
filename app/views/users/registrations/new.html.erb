@@ -1,0 +1,41 @@
+<div class="text-center card mt-5">
+  <div class="panel_w500">
+
+    <h2>新規アカウント登録</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: @user %>
+
+      <div class="field">
+        <%= f.label :name, "ユーザーID（ログインに使用します）", class:"form-label" %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :nickname, "ニックネーム（他のユーザーに表示されます）", class:"form-label" %><br />
+        <%= f.text_field :nickname, autofocus: true, autocomplete: "name", class:"form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, "パスワード（6文字以上）", class:"form-label" %>
+        <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation, "パスワード再入力", class:"form-label" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"favorite_weapon_id","お気に入り武器（後から変更できます）", class:"form-label" %><br />
+        <%= f.collection_select :favorite_weapon_id, @weapons, :id, :name, {}, {class:"select_pull"} %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "新規登録", class:"btn fw-bold text-decoration-none fc-tako btn-tako-outline" %>
+      </div>
+    <% end %>
+    <%= link_to '既に登録済みの方はこちら', new_user_session_path, class: "d-block m-3" %>
+
+  </div>
+</div>

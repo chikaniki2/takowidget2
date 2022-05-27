@@ -1,0 +1,326 @@
+@charset "utf-8";
+
+
+body {
+  margin: 0;
+  font-family: "Hiragino maru Gothic ProN W4", "Hiragino Kaku Gothic Pro" !important;
+}
+
+figcaption {
+  display: none;
+}
+
+a:hover,
+hover_opacity:hover {
+  opacity: 0.7;
+}
+
+img {
+  width: 100%;
+}
+
+#wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+#canvas {
+  padding-top: 56px;
+}
+
+#maplist {
+  margin-top: -56px;
+  padding-top: 56px;
+}
+
+#maplist a{
+  display: block;
+  margin: 0.5em 0px;
+  padding: 1em 0px;
+}
+
+.bg-tako {
+  background-color: #ff0043;
+}
+
+.fc-tako {
+  color: #ff0043 !important;
+}
+
+.btn-tako-outline {
+  color: #ff0043 !important;
+  border: 1px solid #ff0043 !important;
+  border-radius: 5px !important;
+}
+
+.btn-tako {
+  background-color: #ff0043;
+  color: #FFFFFF;
+  border-radius: 5px;
+}
+
+.img_icon {
+  max-width: 100px;
+}
+
+.panel_gray {
+  background-color: #eee;
+  padding: 5px;
+}
+
+.panel_w500 {
+  width: 90%;
+  margin: 30px auto;
+}
+
+.panel_w500 div {
+  margin: 20px auto;
+}
+
+.select_pull {
+  font-size: 12px;
+  padding: 5px;
+  width: 100%;
+  background: #eee;
+  box-sizing: border-box;
+  margin: 10px auto;
+  color: #ff0043;
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #ff0043;
+}
+
+
+.show_username {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.show_taglist {
+  padding-left: 0;
+  list-style: none;
+  color: #555;
+  font-size: 14px;
+}
+
+.midashi {
+  background-color: #555;
+  color: #FFF;
+  font-weight: bold;
+  padding:1em 0px;
+  text-align: center;
+}
+
+#error_explanation h2 {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--bs-danger);
+}
+
+#error_explanation li {
+  font-size: 14px;
+  color: var(--bs-danger);
+}
+
+.field br {
+  display: none;
+}
+
+/* 保存ボタンのフロート描写 */
+.io_show_margin {
+  margin-bottom: 56px;
+}
+
+.io_show {
+  position: fixed;
+  top: 56px;
+  width: 100%;
+  z-index: 5;
+  left: 0px;
+}
+
+/* ハンバーガー */
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.nav-link {
+  color: #FFF !important;
+}
+
+/*  */
+
+
+
+
+/* スケジュール */
+
+.regular div {
+  background: #228b22;
+}
+
+.regular a {
+  background: #98fb98;
+}
+
+.gachi div {
+  background: #ff8c00;
+}
+
+.gachi a {
+  background: #f5deb3;
+}
+
+.league div {
+  background: #ff69b4;
+}
+
+.league a {
+  background: #ffc0cb;
+}
+
+.regular a,
+.gachi a,
+.league a {
+  height: 70px;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+
+}
+
+/*  */
+
+/*立ち回りリスト*/
+#post_list {
+  margin: 10px;
+}
+
+.post_card {
+  display: block;
+  text-decoration: none;
+  color: #333!important;
+  background-color: #EEE;
+  padding: 10px;
+  margin: 1em 0px;
+  border-radius: 15px;
+}
+
+.post_card p {
+  margin: 0px;
+  padding: 10px 0px;
+}
+
+.post_user {
+  font-weight: bold;
+}
+
+.post_description {
+  border-top: 1px solid #333;
+}
+
+.post_likes, .post_weapon {
+  padding-bottom: 0px!important;
+  font-size: 14px;
+  color: #555;
+}
+
+.form-check-input:checked{
+  background-color: #ff0043 !important;
+  border-color: #ff0043 !important
+}
+
+.pagination {
+  padding-top: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination>span {
+  text-align: center;
+  border: 1px solid #DDD;
+  border-right: none;
+}
+
+.pagination>span:first-of-type {
+  border-radius: 10px 0px 0px 10px;
+}
+
+.pagination>span:last-of-type {
+  border-right: 1px solid #DDD;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.pagination a, .pagination .current {
+  color: #ff0043!important;
+  display: block;
+  text-decoration: none;
+  min-width: 50px;
+  padding: 0.5em;
+}
+
+.pagination .current {
+  background-color: #ff0043;
+  color: #fff!important;
+  font-weight: bold;
+}
+
+/* アニメーション */
+.anim_fadeout {
+  animation: anim_fadeout 1s linear 0s 1 normal forwards;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes anim_fadeout {
+  0% {
+    opacity: 1;
+    width: auto;
+    height: auto;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  99% {
+    opacity: 0;
+    width: auto;
+    height: auto;
+  }
+
+  100% {
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+  }
+}
+
+/*  */
+
+
+/* PC専用スタイル */
+@media (min-width:768px) {
+
+  #canvas,
+  .pcw {
+    width: 750px !important;
+    margin: auto;
+    ;
+  }
+
+  .panel_w500 {
+    width: 500px;
+  }
+  
+  #post_list {
+    margin: 10px 0px;
+  }
+}

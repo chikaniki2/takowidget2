@@ -1,0 +1,59 @@
+<div class="midashi">立ち回り検索</div>
+
+<div id="panel_pulllist" class="panel_gray">
+  <%= form_with url: search_post_posts_path, method: :get, local: true do |f| %>
+    <div class="selectbox">
+      <%= f.collection_select :map, @maps, :id, :name, {selected:@map_id},{class: 'select_pull'} %>
+    </div>
+
+    <div class="selectbox">
+      <%= f.collection_select :rule, @rules, :id, :name, {selected:@rule_id}, {class: "select_pull"} %>
+    </div>
+
+    <div class="selectbox">
+      <%= f.collection_select :weapon, @weapons, :id, :name, {selected:@weapon_id}, {class: "select_pull"} %>
+    </div>
+    
+    <div class="text-center mt-3 mb-3 small">
+        <%= f.check_box :category, class: "form-check-input", checked: @checkflg %>
+        <%= f.label :category, "マイナーチェンジも含める", class: "form-check-label" %>
+    </div>
+    
+    <div class="panel_io"></div>
+    <div id="io_tgt" class="panel_gray pt-2 pb-2 text-center">
+      <%= f.submit "検索", class:"btn hover_opacity fw-bold text-decoration-none fc-tako", id:"button_submit" %>
+    </div>
+  <% end %>
+</div>
+
+<div id="post_list">
+  <% unless @posts.nil? %>
+    <% if @posts.empty? %>
+      <div class="pt-5 text-center">
+        ほかユーザーの投稿はありません
+      </div>
+    <% else %>
+      <% @posts.each do |post| %>
+        <% if post[:description].present? %>
+          <%= link_to post_path(post[:id]), class: "post_card" do %>
+            <div>
+              <p class="post_user">
+                <%= post[:user] %> さんのメモ
+              </p>
+              <p class="post_description">
+                <%= post[:description] %>
+              </p>
+              <p class="post_weapon">
+                #<%= post[:weapon] %>
+              </p>
+              <p class="post_likes">
+                いいね:<%= post[:likes] %>
+              </p>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+      <%= paginate @posts %>
+    <% end %>
+  <% end %>
+</div>
