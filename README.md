@@ -1,4 +1,5 @@
-バッジ
+https://img.shields.io/github/stars/chikaniki2/takowidget2
+
 # TAKO Widget 2R
 
 ![タイトルロゴ](https://user-images.githubusercontent.com/99729195/170691129-33a3c60a-6b4f-448f-aaab-a032f274f507.jpg)
