@@ -64,6 +64,8 @@ Nintendo Switch用ゲームソフト『スプラトゥーン2』のプレイヤ�
 - Ruby
 
 # ERD
+![ERD](https://user-images.githubusercontent.com/99729195/170692252-fa92470c-487f-46b2-8e21-2536825b38dc.jpg)
+
 
 # 使い方
 
