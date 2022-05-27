@@ -1,4 +1,4 @@
-https://img.shields.io/github/stars/chikaniki2/takowidget2
+![star](https://img.shields.io/github/stars/chikaniki2/takowidget2)
 
 # TAKO Widget 2R
 
