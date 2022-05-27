@@ -6,7 +6,7 @@
 # 概要
 
 デモページ:
-[github用デモページ_TAKO_Widget_2R](https://yahoo.co.jp)
+[github用デモページ_TAKO_Widget_2R](http://18.177.247.122/)
 
 TAKO Widget 2R（タコウィジェットツーアール）は、  
 Nintendo Switch用ゲームソフト『スプラトゥーン2』のプレイヤー向けに開発したメモ管理ツールです。
