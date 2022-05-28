@@ -75,7 +75,7 @@ Nintendo Switch用ゲームソフト『スプラトゥーン2』のプレイヤ�
 1. 下記コマンドにて、clone、gemのインストール、DBの初期設定を行ってください。
 
 ```bash
-$ git clone https://github.com/hoge/~
+$ git clone https://github.com/chikaniki2/takowidget2.git
 $ cd takowidget2
 $ gem install bundler -v 2.1.4
 $ bundle install
