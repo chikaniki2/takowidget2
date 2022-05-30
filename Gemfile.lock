@@ -279,6 +279,9 @@ GEM
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     rubyzip (2.3.2)
+    sanitize (6.0.0)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.12.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -367,6 +370,7 @@ DEPENDENCIES
   rubocop
   ruby-debug-ide
   ruby-oembed
+  sanitize
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
   spring
