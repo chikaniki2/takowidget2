@@ -16,6 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
       event.preventDefault();
       alert("アップできる画像は2MBまでです。");
     }
-  })
+  });
+
+  var btn = document.createElement('button');
+  btn.id = 'LinkEmbedButton';
+  btn.type = 'button';
+  btn.innerHTML = '<span>TEST</span>';
+  document.querySelector('.trix-button-group--file-tools').appendChild(btn);
 
 });

@@ -105,7 +105,6 @@ class PostsController < ApplicationController
   def update
     params[:post]['user_id'] = current_user.id
     @post = Post.find(params[:id])
-    #@post.avatar.attach(params[:avatar]) if @post.avatar.blank?
       if @post.update(def_params) 
         flash[:notice] = "メモを更新しました"
         redirect_to :posts

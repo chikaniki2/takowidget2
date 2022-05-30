@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  root 'posts#index'
-
   resources :posts do
     get :search, on: :collection
     get :search_post, on: :collection
@@ -22,4 +20,6 @@ Rails.application.routes.draw do
   resources :users do
     get :profile, on: :collection
   end
+  
+  resources :embeds
 end

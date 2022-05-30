@@ -10,12 +10,10 @@ import "channels"
 
 import "bootstrap";
 import "../stylesheets/application.scss";
-import "trix"
 
 Rails.start()
 //Turbolinks.start()
 ActiveStorage.start()
 
 require("@rails/activestorage").start()
-require("trix")
 require("@rails/actiontext")
