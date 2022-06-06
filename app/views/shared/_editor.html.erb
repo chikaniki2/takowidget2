@@ -1,0 +1,30 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div id="panel_pulllist" class="panel_gray">
+    
+      <%= form_with model: post, local: true do |f| %>
+    
+        <div class="selectbox">
+          <%= f.collection_select :map_id, maps, :id, :name, {selected:@map_id},{class:'select_pull'} %>
+        </div>
+    
+        <div class="selectbox">
+          <%= f.collection_select :rule_id, rules, :id, :name, {selected:@rule_id}, {class:"select_pull"} %>
+        </div>
+    
+        <div class="selectbox">
+          <%= f.collection_select :weapon_id, weapons, :id, :name, {selected:@weapon_id}, {class:"select_pull"} %>
+        </div>
+    
+        <div class="panel_io"></div>
+        <div id="io_tgt" class="panel_gray pt-2 pb-2 text-center">
+          <%= f.submit "保存して閉じる", class:"btn hover_opacity fw-bold text-decoration-none fc-tako", id:"button_submit" %>
+        </div>
+        
+        <div class="p-1 m-1 border border-secondary">
+          <%= f.rich_text_area :description %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -30,6 +30,7 @@
             <% mode[:maps].each do |map| %>
               <%= link_to map[:map_name],
                 search_posts_path(map: map[:map_id], rule: mode[:rule_id]),
+                remote: true,
                 class:'text-black-50 text-decoration-none p-1 text-break mt-1'
               %>
             <% end %>
@@ -45,7 +46,14 @@
   <div class="midashi">マップ一覧</div>
   <% if @maps.present? %>
     <% @maps.each do |map| %>
-      <%= link_to map.name, search_posts_path(map: map.id), class:'panel_gray text-black-50 text-decoration-none' %>
+      <%= link_to map.name, search_posts_path(map: map.id), remote: true, class:'panel_gray text-black-50 text-decoration-none' %>
     <% end %>
   <% end %>
 </div>
+
+<div id="modal-editor" class="modal"></div>
+
+<%= javascript_pack_tag 'select_change' %>
+<%#= javascript_pack_tag 'io_setting' %>
+<%= javascript_pack_tag 'toolbar_setting' %>
+<%= javascript_pack_tag 'embed_setting' %>

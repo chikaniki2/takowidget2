@@ -1,8 +1,7 @@
-document.addEventListener("DOMContentLoaded", function () {
-
+document.body.addEventListener('ajax:success',function(){
   document.querySelector('.trix-button-group--text-tools').remove();
   document.querySelector('.trix-button-group--block-tools').remove();
-
+  
   window.addEventListener("trix-file-accept", function (event) {
     // 画像の拡張子をチェック
     const acceptedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
@@ -17,11 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("アップできる画像は2MBまでです。");
     }
   });
-
+  
   var btn = document.createElement('button');
   btn.id = 'LinkEmbedButton';
   btn.type = 'button';
   btn.innerHTML = '<span>Twitter埋め込み</span>';
   document.querySelector('.trix-button-group--file-tools').appendChild(btn);
-
 });

@@ -1,8 +1,8 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const select_map = document.getElementById('post_map_id');
-  const select_rule = document.getElementById('post_rule_id');
-  const select_weapon = document.getElementById('post_weapon_id');
-  const link_search_post = document.getElementById('link_search_post');
+document.body.addEventListener('ajax:success',function(){
+  var select_map = document.getElementById('post_map_id');
+  var select_rule = document.getElementById('post_rule_id');
+  var select_weapon = document.getElementById('post_weapon_id');
+  var link_search_post = document.getElementById('link_search_post');
   
   link_search_post.href += '?map=' + select_map.value + '&rule=' + select_rule.value + '&weapon=' + select_weapon.value + '&category=0';
 
@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   function link_selected() {
-    location.href = location.protocol + '//' + location.host + '/posts/search?map=' + select_map.value + '&rule=' + select_rule.value + '&weapon=' + select_weapon.value;
+    $.ajax({
+          url: location.protocol + '//' + location.host + '/posts/search?map=' + select_map.value + '&rule=' + select_rule.value + '&weapon=' + select_weapon.value,
+    });
+    //location.href = location.protocol + '//' + location.host + '/posts/search?map=' + select_map.value + '&rule=' + select_rule.value + '&weapon=' + select_weapon.value;
   }
 });

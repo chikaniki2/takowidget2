@@ -1,9 +1,14 @@
-import Trix from "trix"
 import axios from "axios"
+import "trix"
 
-require("trix")
+// trixの初期設定が重複するのを回避
+try{
+ const Trix = require("trix"); 
+}catch(e){
+  
+}
 
-document.addEventListener("DOMContentLoaded", () => {
+document.body.addEventListener('ajax:success',function(){
   if (document.getElementById('post_description')) {
     const button = document.getElementById("LinkEmbedButton")
     button.addEventListener("click", e => {
