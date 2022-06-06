@@ -28,8 +28,7 @@ function insertAttachment(data) {
     content: data.html,
     sgid: data.sgid
   });
-
-  editor.insertAttachment(attachment)
+  editor.insertAttachment(attachment);
 }
 
 function fetchEmbbedLink(url) {

@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var btn = document.createElement('button');
   btn.id = 'LinkEmbedButton';
   btn.type = 'button';
-  btn.innerHTML = '<span>TEST</span>';
+  btn.innerHTML = '<span>Twitter埋め込み</span>';
   document.querySelector('.trix-button-group--file-tools').appendChild(btn);
 
 });

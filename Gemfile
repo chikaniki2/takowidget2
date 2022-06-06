@@ -47,7 +47,6 @@ group :development, :test do
   gem "debase"
   gem "rspec-rails"
   gem "factory_bot_rails"
-  gem "rack-mini-profiler", "~> 2.0"
   gem "pry-rails"
 end
 
