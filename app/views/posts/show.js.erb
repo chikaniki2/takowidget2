@@ -1,0 +1,4 @@
+$("#modal-editor").html("<%= escape_javascript(render 'shared/viwer', post: @post) %>")
+$("#modal-editor").modal("show")
+
+$('#modal-editor').trigger('setting:viwer')

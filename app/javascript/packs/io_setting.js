@@ -1,11 +1,10 @@
-document.addEventListener('DOMContentLoaded', function () {
+module.exports = function() {
   // IntersectionObserverのオプション設定
   const options = {
     root: null,
-    rootMargin: "-56px",
+    rootMargin: "-58px",
     threshold: 0.0
   };
-
   //IntersectionObserverのcallback関数の作成
   const callback = (entries, observer) => {
     entries.forEach(entry => {
@@ -24,4 +23,4 @@ document.addEventListener('DOMContentLoaded', function () {
   const observer = new IntersectionObserver(callback, options);
   const el = document.querySelector('.panel_io');
   observer.observe(el);
-});
+}

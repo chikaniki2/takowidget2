@@ -19,8 +19,7 @@
         <%= f.label :category, "マイナーチェンジも含める", class: "form-check-label" %>
     </div>
     
-    <div class="panel_io"></div>
-    <div id="io_tgt" class="panel_gray pt-2 pb-2 text-center">
+    <div class="panel_gray pt-2 pb-2 text-center">
       <%= f.submit "検索", class:"btn hover_opacity fw-bold text-decoration-none fc-tako", id:"button_submit" %>
     </div>
   <% end %>
@@ -35,7 +34,7 @@
     <% else %>
       <% @posts.each do |post| %>
         <% if post[:description].present? %>
-          <%= link_to post_path(post[:id]), class: "post_card" do %>
+          <%= link_to post_path(post[:id]), remote: true, class: "post_card" do %>
             <div>
               <p class="post_user">
                 <%= post[:user] %> さんのメモ
@@ -57,3 +56,8 @@
     <% end %>
   <% end %>
 </div>
+
+<div id="modal-editor" class="modal"></div>
+
+<%= javascript_pack_tag 'io_setting' %>
+<%= javascript_pack_tag 'embed_setting' %>

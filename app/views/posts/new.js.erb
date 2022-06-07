@@ -1,2 +1,8 @@
 $("#modal-editor").html("<%= escape_javascript(render 'shared/editor', {post: @post, maps: @maps, rules: @rules, weapons: @weapons}) %>")
 $("#modal-editor").modal("show")
+
+<% if flash[:alert].present? %>
+  alert('<%= flash[:alert] %>')
+<% end %>
+
+$('#modal-editor').trigger('setting:editor')

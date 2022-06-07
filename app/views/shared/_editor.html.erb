@@ -2,7 +2,7 @@
   <div class="modal-content">
     <div id="panel_pulllist" class="panel_gray">
     
-      <%= form_with model: post, local: true do |f| %>
+      <%= form_with model: post, data: {remote: true} do |f| %>
     
         <div class="selectbox">
           <%= f.collection_select :map_id, maps, :id, :name, {selected:@map_id},{class:'select_pull'} %>

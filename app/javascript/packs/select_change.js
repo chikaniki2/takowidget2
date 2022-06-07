@@ -1,4 +1,4 @@
-document.body.addEventListener('ajax:success',function(){
+module.exports = function() {
   var select_map = document.getElementById('post_map_id');
   var select_rule = document.getElementById('post_rule_id');
   var select_weapon = document.getElementById('post_weapon_id');
@@ -24,4 +24,4 @@ document.body.addEventListener('ajax:success',function(){
     });
     //location.href = location.protocol + '//' + location.host + '/posts/search?map=' + select_map.value + '&rule=' + select_rule.value + '&weapon=' + select_weapon.value;
   }
-});
+};

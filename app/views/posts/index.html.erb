@@ -1,7 +1,7 @@
-<% if flash[:notice] %>
-  <div class="anim_fadeout btn btn-secondary">
-    <%= flash[:notice] %>
-  </div>
+<% if flash[:notice].present? %>
+  <div id="flash-message" class="anim_fadeout btn btn-secondary"><%= flash[:notice] %></div>
+<% else %>
+  <div id="flash-message" class=""></div>
 <% end %>
 
 <%= image_tag 'title01.jpg' %>
@@ -51,9 +51,4 @@
   <% end %>
 </div>
 
-<div id="modal-editor" class="modal"></div>
-
-<%= javascript_pack_tag 'select_change' %>
-<%#= javascript_pack_tag 'io_setting' %>
-<%= javascript_pack_tag 'toolbar_setting' %>
-<%= javascript_pack_tag 'embed_setting' %>
+<div id="modal-editor" class="modal" data-bs-backdrop="static"></div>

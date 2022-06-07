@@ -1,4 +1,4 @@
-document.body.addEventListener('ajax:success',function(){
+module.exports = function() {
   document.querySelector('.trix-button-group--text-tools').remove();
   document.querySelector('.trix-button-group--block-tools').remove();
   
@@ -22,4 +22,4 @@ document.body.addEventListener('ajax:success',function(){
   btn.type = 'button';
   btn.innerHTML = '<span>Twitter埋め込み</span>';
   document.querySelector('.trix-button-group--file-tools').appendChild(btn);
-});
+}

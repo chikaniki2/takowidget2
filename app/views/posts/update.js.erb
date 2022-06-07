@@ -1,0 +1,9 @@
+$("#modal-editor").html("")
+$("#modal-editor").modal("hide")
+
+<% if flash[:notice].present? %>
+  $('#flash-message').removeClass('anim_fadeout btn btn-secondary');
+  $('#flash-message')[0].offsetWidth = $('#flash-message')[0].offsetWidth;
+  $('#flash-message').addClass('anim_fadeout btn btn-secondary');
+  $('#flash-message').html("<%= flash[:notice] %>")
+<% end %>
