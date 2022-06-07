@@ -5,4 +5,5 @@ $("#modal-editor").modal("show")
   alert('<%= flash[:alert] %>')
 <% end %>
 
-$('#modal-editor').trigger('setting:editor')
+var settingEditor = new CustomEvent('settingEditor');
+document.getElementById('modal-editor').dispatchEvent(settingEditor);

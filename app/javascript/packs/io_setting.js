@@ -2,7 +2,7 @@ module.exports = function() {
   // IntersectionObserverのオプション設定
   const options = {
     root: null,
-    rootMargin: "-58px",
+    rootMargin: "-56px",
     threshold: 0.0
   };
   //IntersectionObserverのcallback関数の作成
@@ -23,6 +23,7 @@ module.exports = function() {
         if( elmMargin.getBoundingClientRect().top > elmFloat.getBoundingClientRect().top ){
           elmMargin.classList.remove('io_show_margin');
           elmFloat.classList.remove('io_show');
+          console.log('reset');
         }
         
       }

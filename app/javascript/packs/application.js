@@ -30,15 +30,14 @@ document.addEventListener('DOMContentLoaded', function(){
     const selectChange = require("./select_change")
     const ioSetting = require("./io_setting")
 
-    $(document).on("setting:editor", "#modal-editor", function () {
+    document.getElementById('modal-editor').addEventListener('settingEditor' ,function(e){
       toolbarSetting();
       embedSetting();
       selectChange();
       ioSetting();
     });
-    
-    $(document).on("setting:viewer", "#modal-editor", function () {
-      selectChange();
+
+    document.getElementById('modal-editor').addEventListener('settingViwer', function(e){
       ioSetting();
     });
   }
