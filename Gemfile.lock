@@ -274,10 +274,14 @@ GEM
       parser (>= 3.1.1.0)
     ruby-debug-ide (0.7.3)
       rake (>= 0.8.1)
+    ruby-oembed (0.16.1)
     ruby-progressbar (1.11.0)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     rubyzip (2.3.2)
+    sanitize (6.0.0)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.12.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -365,6 +369,8 @@ DEPENDENCIES
   rspec-rails
   rubocop
   ruby-debug-ide
+  ruby-oembed
+  sanitize
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
   spring

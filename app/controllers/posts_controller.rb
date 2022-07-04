@@ -82,9 +82,9 @@ class PostsController < ApplicationController
     @post = Post.new(def_params)
     if @post.save
       flash[:notice] = "メモを更新しました"
-      redirect_to :posts
     else
       flash[:alert] = "更新に失敗しました"
+      maps_rules_weapons
       render "new"
     end
   end
@@ -105,12 +105,11 @@ class PostsController < ApplicationController
   def update
     params[:post]['user_id'] = current_user.id
     @post = Post.find(params[:id])
-    #@post.avatar.attach(params[:avatar]) if @post.avatar.blank?
       if @post.update(def_params) 
         flash[:notice] = "メモを更新しました"
-        redirect_to :posts
       else
         flash[:alert] = "更新に失敗しました"
+        maps_rules_weapons
         render "edit"
       end
   end

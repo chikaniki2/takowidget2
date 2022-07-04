@@ -10,6 +10,8 @@ import "channels"
 
 import "bootstrap";
 import "../stylesheets/application.scss";
+
+import axios from "axios"
 import "trix"
 
 Rails.start()
@@ -17,5 +19,26 @@ Rails.start()
 ActiveStorage.start()
 
 require("@rails/activestorage").start()
-require("trix")
 require("@rails/actiontext")
+
+
+// viewから呼び出す用にtrigger設定
+document.addEventListener('DOMContentLoaded', function(){
+  if(document.getElementById('modal-editor')){
+    const toolbarSetting = require("./toolbar_setting")
+    const embedSetting = require("./embed_setting")
+    const selectChange = require("./select_change")
+    const ioSetting = require("./io_setting")
+
+    document.getElementById('modal-editor').addEventListener('settingEditor' ,function(e){
+      toolbarSetting();
+      embedSetting();
+      selectChange();
+      ioSetting();
+    });
+
+    document.getElementById('modal-editor').addEventListener('settingViwer', function(e){
+      ioSetting();
+    });
+  }
+});

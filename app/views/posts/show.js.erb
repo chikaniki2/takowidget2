@@ -1,0 +1,5 @@
+$("#modal-editor").html("<%= escape_javascript(render 'shared/viwer', post: @post) %>")
+$("#modal-editor").modal("show")
+
+var settingViwer = new CustomEvent('settingViwer');
+document.getElementById('modal-editor').dispatchEvent(settingViwer);

@@ -1,5 +1,5 @@
 # rootパスのディレクトリを指定
-root_path = File.expand_path('../../', __FILE__)
+root_path = File.expand_path('..', __dir__)
 
 # アプリケーションサーバの性能を決定する
 worker_processes 2
@@ -19,7 +19,7 @@ stderr_path "#{root_path}/log/unicorn.stderr.log"
 # 通常のログを記録するファイルを指定
 stdout_path "#{root_path}/log/unicorn.stdout.log"
 
-#応答時間を待つ上限時間を設定
+# 応答時間を待つ上限時間を設定
 timeout 30
 
 # ダウンタイムなしでUnicornを再起動時する

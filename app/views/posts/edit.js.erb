@@ -1,0 +1,9 @@
+$("#modal-editor").html("<%= escape_javascript(render 'shared/editor', {post: @post, maps: @maps, rules: @rules, weapons: @weapons}) %>")
+$("#modal-editor").modal("show")
+
+<% if flash[:alert].present? %>
+  alert('<%= flash[:alert] %>')
+<% end %>
+
+var settingEditor = new CustomEvent('settingEditor');
+document.getElementById('modal-editor').dispatchEvent(settingEditor);
