@@ -140,6 +140,14 @@ img {
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
+.io_tgt_inner {
+  display: flex;
+}
+
+.io_tgt_inner > * {
+  flex-grow: 1;
+}
+
 /* ハンバーガー */
 nav {
   z-index: 1060!important;
@@ -322,7 +330,33 @@ nav {
   }
 }
 
-/*  */
+/* トグルボタン */
+.toggle_buttons{
+  display: flex;
+  border: 1px solid #e0e0e0;
+}
+
+.toggle_button {
+  background-color: #e0e0e0;
+  width: 50%;
+}
+
+.toggle_button input {
+  display: none;
+}
+
+.toggle_button label {
+  width: 100%;
+  cursor: pointer;
+  height: 100%;
+  line-height: 2em;
+  display: block;
+}
+
+.toggle_button input:checked ~ label{
+  background-color: #ff0043;
+  color: #fff;
+}
 
 
 /* PC専用スタイル */
@@ -346,5 +380,10 @@ nav {
   .modal-dialog {
     width: 750px!important;
     max-width: 750px!important;
+  }
+
+  .io_show .io_tgt_inner{
+    width: 750px;
+    margin: auto;
   }
 }

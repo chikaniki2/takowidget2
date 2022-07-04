@@ -70,6 +70,13 @@ ActiveRecord::Schema.define(version: 2022_05_30_041327) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "oembeds", force: :cascade do |t|
+    t.string "url"
+    t.string "raw_info"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.integer "map_id"
